@@ -41,6 +41,7 @@ export default class Login extends Component {
         let data = await res.json();
         localStorage.setItem("token", data.jwt);
         this.setState({errors: {}})
+        //open the 
       } else {
           let data = await res.json();
           this.setState({
