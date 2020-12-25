@@ -1,11 +1,14 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Login from "./Login";
-import SignUp from "./SignUp";
-import Toolbar from "../components/Navigation/Toolbar/Toolbar";
-import { Link, Router, Switch, Route } from "react-router-dom";
+import MainApp from "./MainApp";
 
-export default class Home extends Component {
-  render() {
-    return this.props.render();
-  }
-}
+const Home = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    setLoggedIn(localStorage.token);
+  }, []);
+
+  return <div>{loggedIn ? <MainApp /> : <Login />}</div>;
+};
+
+export default Home;
