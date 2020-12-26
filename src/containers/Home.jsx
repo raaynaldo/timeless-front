@@ -4,11 +4,18 @@ import MainApp from "./MainApp";
 
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+
   useEffect(() => {
     setLoggedIn(localStorage.token);
   }, []);
 
-  return <div>{loggedIn ? <MainApp /> : <Login />}</div>;
+  const loginSuccess = () => {
+    setLoggedIn(true);
+  };
+
+  return (
+    <div>{loggedIn ? <MainApp /> : <Login loginSuccess={loginSuccess} />}</div>
+  );
 };
 
 export default Home;

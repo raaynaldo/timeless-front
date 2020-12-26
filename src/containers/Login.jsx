@@ -7,29 +7,29 @@ export default class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      errors: {}
+      errors: {},
     };
   }
 
   changeState = (e) => {
-      let newState = {}
-      newState[e.target.name] = e.target.value;
-      this.setState(newState);
-  }
+    let newState = {};
+    newState[e.target.name] = e.target.value;
+    this.setState(newState);
+  };
 
   loginOnClick = async (e) => {
     const url = "http://127.0.0.1:3001/login";
-    let requestObject = {}
+    let requestObject = {};
 
     requestObject.method = "POST";
 
     requestObject.headers = {
       "Content-Type": "application/json",
-      "Accept": "application/json",
+      Accept: "application/json",
     };
 
     requestObject.body = JSON.stringify({
-        user: this.state
+      user: this.state,
     });
 
     let res = await fetch(url, requestObject);
@@ -38,16 +38,16 @@ export default class Login extends Component {
     // console.log(data.user);
 
     if (res.ok) {
-        let data = await res.json();
-        localStorage.setItem("token", data.jwt);
-        this.setState({errors: {}})
-        //open the 
-      } else {
-          let data = await res.json();
-          this.setState({
-          errors: data.errors
-        })
-      }
+      let data = await res.json();
+      localStorage.setItem("token", data.jwt);
+      this.props.loginSuccess();
+      // this.setState({ errors: {} });
+    } else {
+      let data = await res.json();
+      this.setState({
+        errors: data.errors,
+      });
+    }
   };
 
   render() {
