@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import LoginForm from "../components/LoginForm";
+import axios from "axios";
 
 export default class Login extends Component {
   constructor() {
@@ -17,37 +18,23 @@ export default class Login extends Component {
     this.setState(newState);
   };
 
-  loginOnClick = async (e) => {
-    const url = "http://127.0.0.1:3001/login";
-    let requestObject = {};
-
-    requestObject.method = "POST";
-
-    requestObject.headers = {
-      "Content-Type": "application/json",
-      Accept: "application/json",
+  loginOnClick = () => {
+    const data = {
+      user: this.state,
     };
 
-    requestObject.body = JSON.stringify({
-      user: this.state,
-    });
-
-    let res = await fetch(url, requestObject);
-    // let data = await res.json();
-    // localStorage.setItem('token', data.jwt);
-    // console.log(data.user);
-
-    if (res.ok) {
-      let data = await res.json();
-      localStorage.setItem("token", data.jwt);
-      this.props.loginSuccess();
-      // this.setState({ errors: {} });
-    } else {
-      let data = await res.json();
-      this.setState({
-        errors: data.errors,
+    axios
+      .post("/login", data)
+      .then((response) => {
+        console.log(response);
+        const data = response.data;
+        localStorage.setItem("token", data.jwt);
+        this.props.loginSuccess();
+      })
+      .catch((error) => {
+        const data = error.response.data;
+        this.setState({ errors: data.errors });
       });
-    }
   };
 
   render() {
