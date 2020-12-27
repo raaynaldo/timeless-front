@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Login from "./Login";
+import WelcomePage from "./WelcomePage";
 import MainApp from "./MainApp";
 
 const Home = () => {
@@ -14,7 +14,7 @@ const Home = () => {
   };
 
   return (
-    <div>{loggedIn ? <MainApp /> : <Login loginSuccess={loginSuccess} />}</div>
+    <div>{loggedIn ? <MainApp /> : <WelcomePage loginSuccess={loginSuccess} />}</div>
   );
 };
 

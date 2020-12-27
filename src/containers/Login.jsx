@@ -44,6 +44,7 @@ export default class Login extends Component {
           login={this.loginOnClick}
           changeState={this.changeState}
           errors={this.state.errors}
+          signUpClick={this.props.signUpClick}
         />
       </div>
     );
