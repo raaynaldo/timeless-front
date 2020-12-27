@@ -33,22 +33,13 @@ const WelcomePage = (props) => {
         <Router>
           <Switch>
             <Route path="/login">
-              <Login
-                loginSuccess={props.loginSuccess}
-                // signUpClick={changeIsLogin}
-              />
+              <Login loginSuccess={props.loginSuccess} />
             </Route>
             <Route path="/signup">
-              <SignUp
-                signUpSuccess={props.loginSuccess}
-                // loginClick={ChangeIsLogin}
-              />
+              <SignUp signUpSuccess={props.loginSuccess} />
             </Route>
             <Route path="/">
-              <Login
-                loginSuccess={props.loginSuccess}
-                // signUpClick={changeIsLogin}
-              />
+              <Login loginSuccess={props.loginSuccess} />
             </Route>
           </Switch>
         </Router>

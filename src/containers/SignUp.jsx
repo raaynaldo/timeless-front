@@ -32,36 +32,12 @@ export default class SignUp extends Component {
         console.log(response);
         const data = response.data;
         localStorage.setItem("token", data.jwt);
+        this.props.signUpSuccess();
       })
       .catch((error) => {
         const data = error.response.data;
-        this.setState({ errors: data.erros });
+        this.setState({ errors: data.errors });
       });
-
-    // const url = "http://127.0.0.1:3001/users";
-    // let requestObject = {};
-
-    // requestObject.method = "POST";
-
-    // requestObject.headers = {
-    //   "Content-Type": "application/json",
-    //   Accept: "application/json",
-    // };
-
-    // requestObject.body = JSON.stringify({
-    //   user: this.state,
-    // });
-
-    // let res = await fetch(url, requestObject);
-    // if (res.ok) {
-    //   let data = await res.json();
-    //   localStorage.setItem("token", data.jwt);
-    // } else {
-    //     let data = await res.json();
-    //     this.setState({
-    //     errors: data.errors
-    //   })
-    // }
   };
 
   render() {

@@ -7,7 +7,6 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import TimelineIcon from "@material-ui/icons/Timeline";
 import Typography from "@material-ui/core/Typography";
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -35,51 +34,58 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginForm = (props) => {
   const classes = useStyles();
+
   return (
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
         <TimelineIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
-        Sign in
+        Log In
       </Typography>
       <form className={classes.form} noValidate>
-        <TextField
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          autoComplete="username"
-          autoFocus
-          onChange={(e) => props.changeState(e)}
-          id="username"
-          label="Username"
-          name="username"
-          error={!!props.errors.username}
-          helperText={
-            !!props.errors.username ? props.errors.username.join(", ") : ""
-          }
-        />
-        <TextField
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          autoComplete="current-password"
-          onChange={(e) => props.changeState(e)}
-          id="password"
-          label="Password"
-          type="password"
-          name="password"
-          error={!!props.errors.password}
-          helperText={
-            !!props.errors.password ? props.errors.password.join(", ") : ""
-          }
-        />
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" />}
-          label="Remember me"
-        />
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              autoComplete="username"
+              autoFocus
+              onChange={(e) => props.changeState(e)}
+              id="username"
+              label="Username"
+              name="username"
+              error={!!props.errors.username}
+              helperText={
+                !!props.errors.username ? props.errors.username.join(", ") : ""
+              }
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              autoComplete="current-password"
+              onChange={(e) => props.changeState(e)}
+              id="password"
+              label="Password"
+              type="password"
+              name="password"
+              error={!!props.errors.password}
+              helperText={
+                !!props.errors.password ? props.errors.password.join(", ") : ""
+              }
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+          </Grid>
+        </Grid>
         <Button
           fullWidth
           variant="contained"
@@ -87,14 +93,14 @@ const LoginForm = (props) => {
           className={classes.submit}
           onClick={(e) => props.login(e)}
         >
-          Sign In
+          Log In
         </Button>
-        <Grid container>
-          <Grid item xs>
+        <Grid container justify="flex-end">
+          {/* <Grid item xs>
             <Link href="#" variant="body2">
               Forgot password?
             </Link>
-          </Grid>
+          </Grid> */}
           <Grid item>
             <Link href="/signup" variant="body2">
               {"Don't have an account? Sign Up"}

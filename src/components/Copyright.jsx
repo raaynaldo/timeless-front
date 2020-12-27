@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 
 function Copyright() {
   return (
-    <Box mt={5}>
+    <Box mt={2}>
       <Typography variant="body2" color="textSecondary" align="center">
         {"Copyright © "}
         <Link color="inherit" href="https://github.com/brycemooore">
