@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from "react";
 import WelcomePage from "./WelcomePage";
 import MainApp from "./MainApp";
+import axios from "../axios";
 
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    setLoggedIn(localStorage.token);
+    axios
+      .get("/profile")
+      .then((response) => {
+        console.log(response);
+        setUser(response.data.user);
+        setLoggedIn(true);
+      })
+      .catch((error) => {
+        // console.log(error.response);
+        setLoggedIn(false);
+      });
   }, []);
 
   const loginSuccess = () => {
@@ -14,7 +26,13 @@ const Home = () => {
   };
 
   return (
-    <div>{loggedIn ? <MainApp /> : <WelcomePage loginSuccess={loginSuccess} />}</div>
+    <div>
+      {loggedIn ? (
+        <MainApp user={user} />
+      ) : (
+        <WelcomePage loginSuccess={loginSuccess} />
+      )}
+    </div>
   );
 };
 

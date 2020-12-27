@@ -1,12 +1,12 @@
 import React from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
+import Avatar from "@material-ui/core/Avatar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import InputBase from "@material-ui/core/InputBase";
-import SearchIcon from '@material-ui/icons/Search';
-
+import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   search: {
-    position: 'relative',
+    position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
+    "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     // marginLeft: 0,
@@ -31,22 +31,22 @@ const useStyles = makeStyles((theme) => ({
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   inputRoot: {
-    color: 'inherit',
+    color: "inherit",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
+    transition: theme.transitions.create("width"),
+    width: "100%",
     // [theme.breakpoints.up('sm')]: {
     //   width: '12ch',
     //   '&:focus': {
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+const TimlessAppBar = (props) => {
   const classes = useStyles();
 
   return (
@@ -77,10 +77,16 @@ export default function ButtonAppBar() {
             />
           </div>
           <Typography variant="h6">Timeless</Typography>
-          <Button color="inherit">Login</Button>
-          {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.large} /> */}
+          {/* <Button color="inherit">Login</Button> */}
+          <Avatar
+            alt={props.user.full_name}
+            src="/static/images/avatar/1.jpg"
+            className={classes.large}
+          />
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
+
+export default TimlessAppBar;
