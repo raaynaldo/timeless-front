@@ -32,7 +32,7 @@ export default class SignUp extends Component {
         console.log(response);
         const data = response.data;
         localStorage.setItem("token", data.jwt);
-        this.props.signUpSuccess();
+        this.props.history.replace("/");
       })
       .catch((error) => {
         const data = error.response.data;

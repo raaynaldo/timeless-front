@@ -1,38 +1,34 @@
 import React, { useState, useEffect } from "react";
 import WelcomePage from "./WelcomePage";
 import MainApp from "./MainApp";
+import { Switch, Route, Redirect } from "react-router-dom";
 import axios from "../axios";
+import Login from "./Login";
+import SignUp from "./SignUp";
 
 const Home = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
+  const [authData, setAuthData] = useState(localStorage.token);
 
-  useEffect(() => {
-    axios
-      .get("/profile")
-      .then((response) => {
-        console.log(response);
-        setUser(response.data.user);
-        setLoggedIn(true);
-      })
-      .catch((error) => {
-        // console.log(error.response);
-        setLoggedIn(false);
-      });
-  }, []);
+  let redirect = null;
+  if (!authData) {
+    redirect = <Redirect to="/login" />;
+  }
 
-  const loginSuccess = () => {
-    setLoggedIn(true);
+  const setAuth = (token) => {
+    setAuthData(token);
+    redirect = null;
   };
 
   return (
-    <div>
-      {loggedIn ? (
-        <MainApp user={user} />
-      ) : (
-        <WelcomePage loginSuccess={loginSuccess} />
-      )}
-    </div>
+    <Switch>
+      {/* {token == null ? <Route path="/login" component={WelcomePage} /> : null}
+      {token == null ? <Route path="/signup" component={WelcomePage} /> : null} */}
+      <Route path="/login" render={() => <WelcomePage setAuth={setAuth} />} />
+      <Route path="/signup" render={() => <WelcomePage setAuth={setAuth} />} />
+      {redirect}
+      <Route path="/" exact render={() => <MainApp user={user} />} />
+    </Switch>
   );
 };
 

@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Login from "./Login";
 import SignUp from "./SignUp";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,19 +30,14 @@ const WelcomePage = (props) => {
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <Router>
-          <Switch>
-            <Route path="/login">
-              <Login loginSuccess={props.loginSuccess} />
-            </Route>
-            <Route path="/signup">
-              <SignUp signUpSuccess={props.loginSuccess} />
-            </Route>
-            <Route path="/">
-              <Login loginSuccess={props.loginSuccess} />
-            </Route>
-          </Switch>
-        </Router>
+        <Switch>
+          <Route
+            path="/login"
+            render={() => <Login setAuth={props.setAuth} />}
+          />
+          <Route path="/signup" component={SignUp} />
+        </Switch>
+        {/* {props.children} */}
       </Grid>
     </Grid>
   );

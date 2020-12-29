@@ -1,5 +1,5 @@
 import "./App.css";
-// import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Home from "./containers/Home";
 
 // const render = () => {
@@ -17,9 +17,9 @@ import Home from "./containers/Home";
 
 function App() {
   return (
-    // <BrowserRouter>
+    <BrowserRouter>
       <Home />
-    // </BrowserRouter>
+    </BrowserRouter>
     // {/* <Switch location={true}>
     //   <Route exact path="/login"
     //   component={withRouter(<Login />)}

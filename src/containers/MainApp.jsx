@@ -1,28 +1,35 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 import Toolbar from "../components/Navigation/Toolbar";
-import axios from "../axios";
 
-class MainApp extends Component {
-  // state = {
-  //   user: {},
-  // };
+const MainApp = () => {
+  const [user, setUser] = useState({});
+  const history = useHistory();
 
-  // componentDidMount() {
-  //   axios
-  //     .get("/profile")
-  //     .then((response) => console.log(response))
-  //     .catch((error) => console.log(error.response));
-  // }
+  useEffect(() => {
+    console.log("token", localStorage.token);
+    axios
+      .get("/profile", {
+        headers: { Authorization: "Bearer " + localStorage.token },
+      })
+      .then((response) => {
+        console.log(response);
+        setUser(response.data.user);
+      })
+      .catch(() => {
+        history.replace("/login");
+      });
+  }, []);
 
-  render() {
-    return (
-      <div>
-        <Toolbar user={this.props.user} />
-        <h1>FullName : {this.props.user.full_name}</h1>
-        <h1>Username : {this.props.user.username}</h1>
-      </div>
-    );
-  }
-}
+  // console.log("masuk main app", props);
+  return (
+    <div>
+      <Toolbar user={user} />
+      <h1>FullName : {user.full_name}</h1>
+      <h1>Username : {user.username}</h1>
+    </div>
+  );
+};
 
 export default MainApp;

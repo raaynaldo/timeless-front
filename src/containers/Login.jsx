@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import LoginForm from "../components/LoginForm";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 
-export default class Login extends Component {
+class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -29,9 +30,11 @@ export default class Login extends Component {
         console.log(response);
         const data = response.data;
         localStorage.setItem("token", data.jwt);
-        this.props.loginSuccess();
+        this.props.setAuth(data.jwt);
+        this.props.history.replace("/");
       })
       .catch((error) => {
+        console.log(error);
         const data = error.response.data;
         this.setState({ errors: data.errors });
       });
@@ -50,3 +53,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default withRouter(Login);
