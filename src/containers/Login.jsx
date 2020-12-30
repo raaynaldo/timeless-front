@@ -1,57 +1,137 @@
-import React, { Component } from "react";
-import LoginForm from "../components/LoginForm";
-import axios from "axios";
-import { withRouter } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import AuthContext from "../context/auth/authContext";
+import Copyright from "../components/Copyright";
 
-class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      username: "",
-      password: "",
-      errors: {},
-    };
-  }
+import {
+  Avatar,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  Link,
+  makeStyles,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import TimelineIcon from "@material-ui/icons/Timeline";
 
-  changeState = (e) => {
-    let newState = {};
-    newState[e.target.name] = e.target.value;
-    this.setState(newState);
+const Login = (props) => {
+  const authContext = useContext(AuthContext);
+  const { login, errors, clearErrors, isAuthenticated } = authContext;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push("/");
+    }
+  }, [isAuthenticated, props.history]);
+
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
+
+  const onChange = (event) => {
+    setUser({ ...user, [event.target.name]: event.target.value });
   };
 
-  loginOnClick = () => {
-    const data = {
-      user: this.state,
-    };
-
-    axios
-      .post("/login", data)
-      .then((response) => {
-        console.log(response);
-        const data = response.data;
-        localStorage.setItem("token", data.jwt);
-        this.props.setAuth(data.jwt);
-        this.props.history.replace("/");
-      })
-      .catch((error) => {
-        console.log(error);
-        const data = error.response.data;
-        this.setState({ errors: data.errors });
-      });
+  const onSubmit = (event) => {
+    event.preventDefault();
+    login(user);
   };
 
-  render() {
-    return (
-      <div>
-        <LoginForm
-          login={this.loginOnClick}
-          changeState={this.changeState}
-          errors={this.state.errors}
-          signUpClick={this.props.signUpClick}
-        />
-      </div>
-    );
-  }
-}
+  const useStyles = makeStyles((theme) => ({
+    paper: {
+      margin: theme.spacing(8, 4),
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: "#fb5454",
+    },
+    form: {
+      width: "100%", // Fix IE 11 issue.
+      marginTop: theme.spacing(3),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+  }));
 
-export default withRouter(Login);
+  const classes = useStyles();
+  return (
+    <div>
+      <Avatar className={classes.avatar}>
+        <TimelineIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Log In
+      </Typography>
+      <form className={classes.form} noValidate onSubmit={onSubmit}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              autoComplete="username"
+              autoFocus
+              onChange={onChange}
+              id="username"
+              label="Username"
+              name="username"
+              error={!!errors.username}
+              helperText={!!errors.username ? errors.username.join(", ") : ""}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              autoComplete="current-password"
+              onChange={onChange}
+              id="password"
+              label="Password"
+              type="password"
+              name="password"
+              error={!!errors.password}
+              helperText={!!errors.password ? errors.password.join(", ") : ""}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+          </Grid>
+        </Grid>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+        >
+          Log In
+        </Button>
+        <Grid container justify="flex-end">
+          {/* <Grid item xs>
+            <Link href="#" variant="body2">
+              Forgot password?
+            </Link>
+          </Grid> */}
+          <Grid item>
+            <Link href="/signup" variant="body2">
+              {"Don't have an account? Sign Up"}
+            </Link>
+          </Grid>
+        </Grid>
+        <Copyright />
+      </form>
+    </div>
+  );
+};
+
+export default Login;

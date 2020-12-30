@@ -7,20 +7,20 @@ const MainApp = () => {
   const [user, setUser] = useState({});
   const history = useHistory();
 
-  useEffect(() => {
-    console.log("token", localStorage.token);
-    axios
-      .get("/profile", {
-        headers: { Authorization: "Bearer " + localStorage.token },
-      })
-      .then((response) => {
-        console.log(response);
-        setUser(response.data.user);
-      })
-      .catch(() => {
-        history.replace("/login");
-      });
-  }, []);
+  // useEffect(() => {
+  //   console.log("token", localStorage.token);
+  //   axios
+  //     .get("/profile", {
+  //       headers: { Authorization: "Bearer " + localStorage.token },
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //       setUser(response.data.user);
+  //     })
+  //     .catch(() => {
+  //       history.replace("/login");
+  //     });
+  // }, []);
 
   // console.log("masuk main app", props);
   return (
