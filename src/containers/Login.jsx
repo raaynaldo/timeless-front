@@ -17,11 +17,12 @@ import TimelineIcon from "@material-ui/icons/Timeline";
 
 const Login = (props) => {
   const authContext = useContext(AuthContext);
-  const { login, errors, clearErrors, isAuthenticated } = authContext;
-
+  const { login, validation, clearErrors, isAuthenticated } = authContext;
+console.log(validation)
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push("/");
+      clearErrors();
     }
   }, [isAuthenticated, props.history]);
 
@@ -36,7 +37,7 @@ const Login = (props) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    login(user);
+    login({ user });
   };
 
   const useStyles = makeStyles((theme) => ({
@@ -61,7 +62,7 @@ const Login = (props) => {
 
   const classes = useStyles();
   return (
-    <div>
+    <div className={classes.paper}>
       <Avatar className={classes.avatar}>
         <TimelineIcon />
       </Avatar>
@@ -81,8 +82,8 @@ const Login = (props) => {
               id="username"
               label="Username"
               name="username"
-              error={!!errors.username}
-              helperText={!!errors.username ? errors.username.join(", ") : ""}
+              error={!!validation.username}
+              helperText={!!validation.username ? validation.username.join(", ") : ""}
             />
           </Grid>
           <Grid item xs={12}>
@@ -96,8 +97,8 @@ const Login = (props) => {
               label="Password"
               type="password"
               name="password"
-              error={!!errors.password}
-              helperText={!!errors.password ? errors.password.join(", ") : ""}
+              error={!!validation.password}
+              helperText={!!validation.password ? validation.password.join(", ") : ""}
             />
           </Grid>
           <Grid item xs={12}>

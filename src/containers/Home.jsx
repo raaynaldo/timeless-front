@@ -7,18 +7,12 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 
 const Home = () => {
-  const [user, setUser] = useState({});
-  const [authData, setAuthData] = useState(localStorage.token);
+  const authContext = useContext(AuthContext);
+  const { loadUser } = authContext;
 
-  let redirect = null;
-  if (!authData) {
-    redirect = <Redirect to="/login" />;
-  }
-
-  const setAuth = (token) => {
-    setAuthData(token);
-    redirect = null;
-  };
+  useEffect(() => {
+    loadUser();
+  }, []);
 
   return (
     <Switch>

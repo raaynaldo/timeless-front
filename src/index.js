@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import axios from "axios";
+import AuthState from "./context/auth/AuthState";
 
 axios.defaults.baseURL = "http://127.0.0.1:3001";
 
@@ -26,13 +27,16 @@ axios.interceptors.response.use(
   },
   (error) => {
     console.log(error);
+    console.log(error.response);
     return Promise.reject(error);
   }
 );
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AuthState>
+      <App />
+    </AuthState>
   </React.StrictMode>,
   document.getElementById("root")
 );
