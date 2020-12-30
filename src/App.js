@@ -14,6 +14,7 @@ function App() {
 
   useEffect(() => {
     loadUser();
+    console.log("Woy")
   }, []);
 
   return (
@@ -24,8 +25,6 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
         </WelcomePage>
-        {/* <Route exact path="/login" component={WelcomePage} /> */}
-        {/* <Route exact path="/signup" component={WelcomePage} /> */}
       </Switch>
     </Router>
   );

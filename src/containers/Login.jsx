@@ -18,7 +18,7 @@ import TimelineIcon from "@material-ui/icons/Timeline";
 const Login = (props) => {
   const authContext = useContext(AuthContext);
   const { login, validation, clearErrors, isAuthenticated } = authContext;
-console.log(validation)
+  
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push("/");
@@ -83,7 +83,9 @@ console.log(validation)
               label="Username"
               name="username"
               error={!!validation.username}
-              helperText={!!validation.username ? validation.username.join(", ") : ""}
+              helperText={
+                !!validation.username ? validation.username.join(", ") : ""
+              }
             />
           </Grid>
           <Grid item xs={12}>
@@ -98,7 +100,9 @@ console.log(validation)
               type="password"
               name="password"
               error={!!validation.password}
-              helperText={!!validation.password ? validation.password.join(", ") : ""}
+              helperText={
+                !!validation.password ? validation.password.join(", ") : ""
+              }
             />
           </Grid>
           <Grid item xs={12}>

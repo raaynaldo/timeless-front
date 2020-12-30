@@ -1,6 +1,6 @@
 import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL,
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
@@ -18,7 +18,7 @@ export default (state, action) => {
         loading: false,
         user: action.payload,
       };
-    case REGISTER_SUCCESS:
+    case SIGNUP_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.jwt);
       return {
@@ -28,6 +28,7 @@ export default (state, action) => {
         loading: false,
       };
     case AUTH_ERROR:
+    case LOGOUT:
       localStorage.removeItem("token");
       return {
         ...state,
@@ -37,7 +38,7 @@ export default (state, action) => {
         user: null,
         error: action.payload,
       };
-    case REGISTER_FAIL:
+    case SIGNUP_FAIL:
     case LOGIN_FAIL:
       localStorage.removeItem("token");
       return {

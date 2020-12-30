@@ -4,8 +4,8 @@ import AuthContext from "./authContext";
 import authReducer from "./authReducer";
 import setAuthToken from "../../utils/setAuthToken";
 import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL,
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
@@ -21,7 +21,7 @@ const AuthState = (props) => {
     loading: true,
     user: null,
     error: null,
-    validation: {}
+    validation: {},
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -44,7 +44,20 @@ const AuthState = (props) => {
     }
   };
 
-  // Register User
+  // SignUp User
+  const signup = async (formData) => {
+    const config = {
+      "Content-Type": "application/json",
+    };
+
+    try {
+      const res = await axios.post("/users", formData, config);
+
+      dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
+    } catch (error) {
+      dispatch({ type: SIGNUP_FAIL, payload: error.response.data.errors });
+    }
+  };
 
   // Login User
   const login = async (formData) => {
@@ -68,6 +81,7 @@ const AuthState = (props) => {
   };
 
   // Logout
+  const logout = () => dispatch({ type: LOGOUT });
 
   // Clear errors
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
@@ -81,9 +95,11 @@ const AuthState = (props) => {
         user: state.user,
         error: state.error,
         validation: state.validation,
-        login,
         loadUser,
-        clearErrors
+        signup,
+        login,
+        logout,
+        clearErrors,
       }}
     >
       {props.children}

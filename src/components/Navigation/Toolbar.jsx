@@ -1,11 +1,16 @@
-import React from "react";
-import { fade, makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Avatar from "@material-ui/core/Avatar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import InputBase from "@material-ui/core/InputBase";
+import React, { useContext } from "react";
+import AuthContext from "../../context/auth/authContext";
+
+import {
+  AppBar,
+  Avatar,
+  Button,
+  InputBase,
+  Toolbar,
+  Typography,
+  fade,
+  makeStyles,
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
@@ -57,8 +62,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TimlessAppBar = (props) => {
-  const classes = useStyles();
+  const authContext = useContext(AuthContext);
+  const { logout } = authContext;
 
+  const onClick = () => {
+    logout();
+  };
+
+  const classes = useStyles();
   return (
     <div>
       <AppBar position="static" className={classes.root}>
@@ -77,7 +88,9 @@ const TimlessAppBar = (props) => {
             />
           </div>
           <Typography variant="h6">Timeless</Typography>
-          {/* <Button color="inherit">Login</Button> */}
+          <Button color="inherit" onClick={onClick}>
+            Logout
+          </Button>
           <Avatar
             alt={props.user.full_name}
             src="/static/images/avatar/1.jpg"

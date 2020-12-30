@@ -1,7 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-// import { useHistory } from "react-router-dom";
+import React, { useContext } from "react";
 import AuthContext from "../context/auth/authContext";
-// import axios from "axios";
 import Toolbar from "../components/Navigation/Toolbar";
 
 const MainApp = (props) => {
