@@ -72,7 +72,7 @@ const TimlessAppBar = (props) => {
   const classes = useStyles();
   return (
     <div>
-      <AppBar position="fixed" className={classes.root}>
+      <AppBar position="staic" className={classes.root}>
         <Toolbar className={classes.toolbar}>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
