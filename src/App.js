@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MainApp from "./containers/MainApp";
 import PrivateRoute from "./PrivateRoute";
 import WelcomePage from "./containers/WelcomePage";
-import SignUp from "./containers/SignUp";
-import Login from "./containers/Login";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 import AuthContext from "./context/auth/authContext";
 
 function App() {
