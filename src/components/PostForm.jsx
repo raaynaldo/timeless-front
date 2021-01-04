@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import Chip from "@material-ui/core/Chip";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import AddTagSection from "./AddTagSection";
+import axios from "axios";
 
 export default function PostForm() {
   const [open, setOpen] = useState(false);
@@ -24,27 +26,31 @@ export default function PostForm() {
   };
 
   const handleClose = () => {
+    const postData = {
+      body: formBody,
+      image: formImage,
+      tags: tags
+    };
+
+    const config ={
+      "Content-Type": "application/json"
+    };
+    axios.post(`/posts/`, postData, config).then(res => console.log(res.json))
     setOpen(false);
   };
-
-  const addTag = () => {};
 
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
+        Make New Memory
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title">Remember this Moment!</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
           <TextField
             onChange={(e) => setFormImage(e.target.value)}
             autoFocus
@@ -65,17 +71,17 @@ export default function PostForm() {
             type="body"
             fullWidth
           />
-
+          {tags.map(tag => <Chip label={tag}/>)}
           {tagOpen ? (
             <AddTagSection setShowing={setTagOpen} addToTags={setTags} />
           ) : null}
         </DialogContent>
         <DialogActions>
-          <Button onClick={addTag} color="primary">
+          <Button onClick={() => setTagOpen(true)} color="primary">
             Add a Tag
           </Button>
           <Button onClick={handleClose} color="primary">
-            Subscribe
+            Post
           </Button>
         </DialogActions>
       </Dialog>
