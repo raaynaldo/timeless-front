@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     loadUser();
-    console.log("Woy")
+    // console.log("Woy");
   }, []);
 
   return (

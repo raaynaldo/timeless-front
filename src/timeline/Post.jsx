@@ -21,7 +21,8 @@ import TextInfoContent from "@mui-treasury/components/content/textInfo";
 
 const useStyles = makeStyles(() => ({
   root: {
-    maxWidth: 304,
+    // maxWidth: "100%",
+    width: 400,
     margin: "auto",
   },
   content: {
@@ -38,7 +39,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Post() {
+export default function Post({ post }) {
   const cardStyles = useStyles();
   const mediaStyles = useSlopeCardMediaStyles();
   const shadowStyles = useSoftRiseShadowStyles();
@@ -65,10 +66,8 @@ export default function Post() {
           <CardContent className={cardStyles.content}>
             <TextInfoContent
               classes={textCardContentStyles}
-              heading={"First Snow Storm"}
-              body={
-                "Snow storm coming in Sommaroy island, Arctic Norway. This is something that you definitely wanna see in your life."
-              }
+              heading={post.post_date}
+              body={post.body}
             />
           </CardContent>
           <Box px={2} pb={2} mt={-1}>

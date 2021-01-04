@@ -1,18 +1,18 @@
 import React from "react";
 import "./output.css";
-import Post from './Post'
-
+import Post from "./Post";
 
 export default function Section(props) {
   return (
-      <section className={`section section${props.id}`} id={`section${props.id}`}>
-        <div>
-        {"Section" + props.id}
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        </div>
-      </section>
+    <section
+      className={`section section${props.year}`}
+      id={`section${props.year}`}
+    >
+      <div>
+        {props.timeline.map(t => {
+          return <Post post={t}/>
+        })}
+      </div>
+    </section>
   );
 }
