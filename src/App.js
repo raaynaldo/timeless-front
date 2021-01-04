@@ -7,6 +7,7 @@ import WelcomePage from "./containers/WelcomePage";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import AuthContext from "./context/auth/authContext";
+import Timeline from "./timeline/Timeline";
 
 function App() {
   const authContext = useContext(AuthContext);
@@ -20,11 +21,14 @@ function App() {
   return (
     <Router>
       <Switch>
-        <PrivateRoute exact path="/" component={MainApp} />
-        <WelcomePage>
+        {/* <Route exact path="/profile" component={Timeline}/> */}
+          {/* <Timeline user={user ? user : {}} /> */}
+        <Route path="/auth" component={WelcomePage} />
+        <PrivateRoute path="/" component={MainApp} />
+        {/* <WelcomePage>
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
-        </WelcomePage>
+        </WelcomePage> */}
       </Switch>
     </Router>
   );

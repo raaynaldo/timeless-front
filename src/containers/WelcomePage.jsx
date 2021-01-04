@@ -3,6 +3,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
+import SignUp from "../components/SignUp";
+import Login from "../components/Login";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,14 +23,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Auth = (props) => {
+const Auth = () => {
   const classes = useStyles();
+  let { path, url } = useRouteMatch();
+  console.log(path)
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        {props.children}
+        <Switch>
+          <Route exact path={`${path}/login`} component={Login} />
+          <Route exact path={`${path}/signup`} component={SignUp} />
+        </Switch>
+        {/* {props.children} */}
       </Grid>
     </Grid>
   );
