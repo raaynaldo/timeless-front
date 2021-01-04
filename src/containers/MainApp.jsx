@@ -8,16 +8,14 @@ const MainApp = (props) => {
   const authContext = useContext(AuthContext);
   const { user } = authContext;
   let { path, url } = useRouteMatch();
-  console.log(path)
+  console.log("mainapp: " + path);
   return (
-    <div>
+    <div style={{ marginTop: "64px" }}>
       <Toolbar user={user ? user : {}} />
-      <Switch>
-        <Route exact path={`${path}profile`}>
-          <Timeline user={user ? user : {}} />
-        </Route>
-        {/* <Route exact path="/home" component={SignUp} /> */}
-      </Switch>
+      <Route exact path={`${path}profile`}>
+        <Timeline user={user ? user : {}} />
+      </Route>
+      {/* <Route exact path="/home" component={SignUp} /> */}
       {/* <Timeline user={user ? user : {}} /> */}
       <h1>FullName : {user?.full_name}</h1>
       <h1>Username : {user?.username}</h1>
