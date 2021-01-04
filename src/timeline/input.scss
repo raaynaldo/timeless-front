@@ -22,12 +22,12 @@ section {
   $fire-opal: #e86252ff;
   $winter-sky: #ee2677ff;
 
-  $colors: white, #F64747, #22A7F0, #F9690E, #9B59B6, #03C9A9, #ffcc00;
-  @for $i from 1 through length($colors) {
-    &:nth-child(#{$i}) {
-      background: nth($colors, $i)
-    }
-  }
+  // $colors: white, #F64747, #22A7F0, #F9690E, #9B59B6, #03C9A9, #ffcc00;
+  // @for $i from 1 through length($colors) {
+  //   &:nth-child(#{$i}) {
+  //     background: nth($colors, $i)
+  //   }
+  // }
 }
 
 ::-webkit-scrollbar {

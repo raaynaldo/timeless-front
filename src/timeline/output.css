@@ -6,8 +6,16 @@
   position: relative;
 }
 
+/* a.anchor {
+  display: block;
+  position: relative;
+  padding-top: -64px;
+  visibility: hidden;
+} */
+
 section {
   /* height: 100vh; */
+  /* padding-top: 64px; */
   font-size: 40px;
   font-weight: 100;
   background-color: #22a7f0;
