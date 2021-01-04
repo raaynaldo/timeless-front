@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link as LinkRoute } from "react-router-dom";
 import AuthContext from "../context/auth/authContext";
 import Copyright from "../components/Copyright";
 
@@ -240,9 +241,11 @@ const SignUp = (props) => {
         </Button>
         <Grid container justify="flex-end">
           <Grid item>
-            <Link href="/login" variant="body2">
+            <LinkRoute to="/auth/login">
+              {/* <Link variant="body2"> */}
               Already have an account? Sign in
-            </Link>
+              {/* </Link> */}
+            </LinkRoute>
           </Grid>
         </Grid>
         <Copyright />

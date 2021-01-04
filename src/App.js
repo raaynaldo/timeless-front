@@ -21,10 +21,11 @@ function App() {
     <Router>
       <Switch>
         <PrivateRoute exact path="/" component={MainApp} />
-        <WelcomePage>
+        <Route path="/auth" component={WelcomePage} />
+        {/* <WelcomePage>
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
-        </WelcomePage>
+        </WelcomePage> */}
       </Switch>
     </Router>
   );
