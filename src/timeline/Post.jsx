@@ -45,6 +45,12 @@ export default function Post({ post }) {
   const shadowStyles = useSoftRiseShadowStyles();
   const textCardContentStyles = useN01TextInfoContentStyles();
 
+  const dateOption = {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  };
+  const date = new Date(post.post_date).toLocaleDateString("en-US", dateOption);
   return (
     <TimelineItem>
       <TimelineSeparator>
@@ -66,7 +72,7 @@ export default function Post({ post }) {
           <CardContent className={cardStyles.content}>
             <TextInfoContent
               classes={textCardContentStyles}
-              heading={post.post_date}
+              heading={date}
               body={post.body}
             />
           </CardContent>

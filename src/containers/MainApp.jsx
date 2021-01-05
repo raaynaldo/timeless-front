@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import AuthContext from "../context/auth/authContext";
 import Toolbar from "../components/Navigation/Toolbar";
 import Timeline from "../timeline/Timeline";
-import PostForm from "../components/PostForm";
 import { Route, useRouteMatch } from "react-router-dom";
 
 const MainApp = () => {
@@ -14,7 +13,6 @@ const MainApp = () => {
     <div style={{ marginTop: "64px" }}>
       <Toolbar user={user ? user : {}} />
       <Route exact path={`${path}profile`}>
-        <PostForm />
         <Timeline user={user ? user : {}} />
       </Route>
       <Route exact path="/">

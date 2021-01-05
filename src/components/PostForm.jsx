@@ -1,16 +1,22 @@
-import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Chip from "@material-ui/core/Chip";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import React, { useContext, useState } from "react";
 import AddTagSection from "./AddTagSection";
+import TimelineContext from "../context/timeline/timelineContext";
+import {
+  Button,
+  Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from "@material-ui/core";
+// import DialogContentText from "@material-ui/core/DialogContentText";
 import axios from "axios";
 
 export default function PostForm() {
+  const timelineContext = useContext(TimelineContext);
+  const { addPost } = timelineContext;
+
   const [open, setOpen] = useState(false);
 
   const [formImage, setFormImage] = useState("");
@@ -29,13 +35,16 @@ export default function PostForm() {
     const postData = {
       body: formBody,
       image: formImage,
-      tags: tags
+      tags: tags,
     };
+    addPost(postData);
+    // const config = {
+    //   "Content-Type": "application/json",
+    // };
 
-    const config ={
-      "Content-Type": "application/json"
-    };
-    axios.post(`/posts/`, postData, config).then(res => console.log(res.json))
+    // axios
+    //   .post(`/posts/`, postData, config)
+    //   .then((res) => console.log(res.json));
     setOpen(false);
   };
 
@@ -71,7 +80,9 @@ export default function PostForm() {
             type="body"
             fullWidth
           />
-          {tags.map(tag => <Chip label={tag}/>)}
+          {tags.map((tag) => (
+            <Chip label={tag} />
+          ))}
           {tagOpen ? (
             <AddTagSection setShowing={setTagOpen} addToTags={setTags} />
           ) : null}

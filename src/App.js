@@ -5,6 +5,7 @@ import MainApp from "./containers/MainApp";
 import PrivateRoute from "./PrivateRoute";
 import WelcomePage from "./containers/WelcomePage";
 import AuthContext from "./context/auth/authContext";
+import TimelineState from "./context/timeline/TimelineState";
 
 function App() {
   const authContext = useContext(AuthContext);
@@ -15,16 +16,18 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <Switch>
-        <Route path="/auth" component={WelcomePage} />
-        <PrivateRoute path="/" component={MainApp} />
-        {/* <WelcomePage>
+    <TimelineState>
+      <Router>
+        <Switch>
+          <Route path="/auth" component={WelcomePage} />
+          <PrivateRoute path="/" component={MainApp} />
+          {/* <WelcomePage>
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
         </WelcomePage> */}
-      </Switch>
-    </Router>
+        </Switch>
+      </Router>
+    </TimelineState>
   );
 }
 

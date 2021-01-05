@@ -1,33 +1,58 @@
 import React, { useEffect, useContext, useState } from "react";
 import AuthContext from "../context/auth/authContext";
-import "./output.css";
+import TimelineContext from "../context/timeline/timelineContext";
+import PostForm from "../components/PostForm";
 import VisualTimeline from "./VisualTimeline";
 import SectionLine from "./SectionLine";
-import axios from "axios";
+
+import "./output.css";
+import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    textAlign: "center",
+    // display: "flex",
+    "& > * + *": {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));
 
 // let test = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 export default function Timeline() {
+  const classes = useStyles();
+
+  const [years, setYears] = useState([]);
+  const [timeline, setTimeline] = useState([]);
+
   const authContext = useContext(AuthContext);
   const { user } = authContext;
 
-  const [timeline, setTimeline] = useState([]);
-  const [years, setYears] = useState([]);
+  const timelineContext = useContext(TimelineContext);
+  const { posts, loading, getUserPosts } = timelineContext;
 
   useEffect(() => {
     if (user) {
-      console.log("hey there");
-      axios.get(`/user_posts/${user.id}`).then((res) => {
-        setTimeline(res.data.posts);
-        setYears(Object.keys(res.data.posts).reverse());
-      });
+      getUserPosts(user.id);
     }
   }, [user]);
 
-  return (
-    <div className="wrapper">
-      <VisualTimeline sections={years} />
-      <SectionLine sections={timeline} />
-    </div>
-  );
+  if (!loading) {
+    return (
+      <div className="wrapper">
+        <PostForm />
+        <VisualTimeline sections={Object.keys(posts).reverse()} />
+        <SectionLine sections={posts} />
+      </div>
+    );
+  } else {
+    return (
+      <div className={classes.root}>
+        <CircularProgress size={100} />
+      </div>
+    );
+  }
 }
