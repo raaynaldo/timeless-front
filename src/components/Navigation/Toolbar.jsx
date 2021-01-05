@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
 
 import {
@@ -87,15 +88,19 @@ const TimlessAppBar = (props) => {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <Typography variant="h6">Timeless</Typography>
+          <NavLink to="/">
+            <Typography variant="h6">Timeless</Typography>
+          </NavLink>
           <Button color="inherit" onClick={onClick}>
             Logout
           </Button>
-          <Avatar
-            alt={props.user.full_name}
-            src="/static/images/avatar/1.jpg"
-            className={classes.large}
-          />
+          <NavLink to="/profile">
+            <Avatar
+              alt={props.user.full_name}
+              src="/static/images/avatar/1.jpg"
+              className={classes.large}
+            />
+          </NavLink>
         </Toolbar>
       </AppBar>
     </div>

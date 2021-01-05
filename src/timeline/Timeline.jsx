@@ -5,7 +5,7 @@ import VisualTimeline from "./VisualTimeline";
 import SectionLine from "./SectionLine";
 import axios from "axios";
 
-let test = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+// let test = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 export default function Timeline() {
   const authContext = useContext(AuthContext);
@@ -15,7 +15,6 @@ export default function Timeline() {
   const [years, setYears] = useState([]);
 
   useEffect(() => {
-    console.log(user);
     if (user) {
       axios.get(`/user_posts/${user.id}`).then((res) => {
         setTimeline(res.data.posts);

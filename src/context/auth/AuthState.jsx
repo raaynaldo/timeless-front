@@ -32,7 +32,6 @@ const AuthState = (props) => {
 
     try {
       const res = await axios.get("/profile");
-      console.log(res);
       dispatch({
         type: USER_LOADED,
         payload: res.data.user,
@@ -67,7 +66,7 @@ const AuthState = (props) => {
 
     try {
       const res = await axios.post("/login", formData, config);
-
+      console.log("aye", res.data);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
