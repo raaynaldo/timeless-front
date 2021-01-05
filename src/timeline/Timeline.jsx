@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import AuthContext from "../context/auth/authContext";
 import TimelineContext from "../context/timeline/timelineContext";
 import PostForm from "../components/PostForm";
@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     textAlign: "center",
-    // display: "flex",
     "& > * + *": {
       marginLeft: theme.spacing(2),
     },
@@ -24,9 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Timeline() {
   const classes = useStyles();
-
-  const [years, setYears] = useState([]);
-  const [timeline, setTimeline] = useState([]);
 
   const authContext = useContext(AuthContext);
   const { user } = authContext;

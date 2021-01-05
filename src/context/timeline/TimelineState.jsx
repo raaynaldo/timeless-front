@@ -7,6 +7,7 @@ import {
   ADD_POST_ERROR,
   GET_USER_POSTS,
   TIMELINE_ERROR,
+  SET_LOADING,
 } from "../types";
 
 const TimelineState = (props) => {
@@ -23,6 +24,7 @@ const TimelineState = (props) => {
       dispatch({
         type: GET_USER_POSTS,
         payload: res.data.posts,
+        errors: null,
       });
     } catch (error) {
       dispatch({
@@ -38,14 +40,6 @@ const TimelineState = (props) => {
     };
     try {
       const res = await axios.post("/posts", formData, config);
-      // const res = {
-      //   data: {
-      //     post: {
-      //       body: "okay",
-      //       post_date: "2023-01-06T01:16:57.907Z",
-      //     },
-      //   },
-      // };
       dispatch({
         type: ADD_POST,
         payload: res.data.post,
@@ -54,6 +48,8 @@ const TimelineState = (props) => {
       dispatch({ type: ADD_POST_ERROR, payload: error.response.data.errors });
     }
   };
+
+  const setLoading = () => dispatch({ type: SET_LOADING });
 
   return (
     <TimelineContext.Provider
