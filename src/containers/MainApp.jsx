@@ -4,6 +4,7 @@ import Toolbar from "../components/Navigation/Toolbar";
 import Timeline from "../timeline/Timeline";
 import { Route, useRouteMatch } from "react-router-dom";
 
+
 const MainApp = () => {
   const authContext = useContext(AuthContext);
   const { user } = authContext;
