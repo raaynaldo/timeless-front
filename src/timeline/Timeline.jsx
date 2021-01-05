@@ -16,6 +16,7 @@ export default function Timeline() {
 
   useEffect(() => {
     if (user) {
+      console.log("hey there");
       axios.get(`/user_posts/${user.id}`).then((res) => {
         setTimeline(res.data.posts);
         setYears(Object.keys(res.data.posts).reverse());

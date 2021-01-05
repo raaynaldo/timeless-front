@@ -14,6 +14,7 @@ const MainApp = () => {
     <div style={{ marginTop: "64px" }}>
       <Toolbar user={user ? user : {}} />
       <Route exact path={`${path}profile`}>
+        <PostForm />
         <Timeline user={user ? user : {}} />
       </Route>
       <Route exact path="/">
