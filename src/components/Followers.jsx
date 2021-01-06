@@ -50,9 +50,8 @@ export default function Followers(props) {
       open={props.openStatus}
       style={{ maxHeight: "75%", overflow: "auto" }}
     >
-      <List style={{ overflow: "auto", minWidth: "75%" }}>
+      <List style={{ overflow: "auto", minWidth: "75%", paddingTop: 0 }}>
         <ListSubheader color={"primary"} style={{ background: "white" }}>
-          {" "}
           {`${props.title}  `}
           <IconButton
             edge="start"
