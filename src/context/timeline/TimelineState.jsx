@@ -107,6 +107,7 @@ const TimelineState = (props) => {
         getCurrentUserProfile,
         getOtherUserProfile,
         addPost,
+        followUnfollow
       }}
     >
       {props.children}

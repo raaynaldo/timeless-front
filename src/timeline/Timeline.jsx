@@ -51,7 +51,7 @@ export default function Timeline() {
     }
   }, [user, params]);
 
-  console.log({ error }, { loading }, { posts });
+  console.log({ is_following });
   if (!loading && !error) {
     return (
       <div className="wrapper">

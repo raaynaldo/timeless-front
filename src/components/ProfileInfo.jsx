@@ -82,7 +82,14 @@ export default function ProfileInfo(props) {
             <p className={styles.statValue}>{props.user_data.followee_count}</p>
           </Box>
         </Box>
-        {(props.is_user ? <PostForm /> : <FollowButton following={props.is_following}/>)}
+        {props.is_user ? (
+          <PostForm />
+        ) : (
+          <FollowButton
+            following={props.is_following}
+            id={props.user_data.id}
+          />
+        )}
       </Card>
       );
     </div>
