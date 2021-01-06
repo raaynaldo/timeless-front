@@ -51,7 +51,7 @@ section:nth-child(7) {
 }
 
 .nav__wrapper {
-  position: fixed;
+  position: absolute;
   height: 100vh;
   padding: 30px;
   width: 16vw;

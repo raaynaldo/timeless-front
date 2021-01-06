@@ -61,7 +61,7 @@ export default function Post({ post }) {
         <Card className={cx(cardStyles.root, shadowStyles.root)}>
           <CardMedia
             classes={mediaStyles}
-            image={post.image ? post.image : ""}
+            image={post.image}
           />
           <Avatar
             className={cardStyles.avatar}

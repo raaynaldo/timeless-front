@@ -1,18 +1,21 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
+import Search from './Search'
+
 
 import {
   AppBar,
   Avatar,
   Button,
+  IconButton,
   InputBase,
   Toolbar,
   Typography,
   fade,
   makeStyles,
 } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,19 +78,7 @@ const TimlessAppBar = (props) => {
     <div>
       <AppBar position="fixed" className={classes.root}>
         <Toolbar className={classes.toolbar}>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
+          <Search />
           <NavLink to="/">
             <Typography variant="h6">Timeless</Typography>
           </NavLink>
