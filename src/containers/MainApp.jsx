@@ -19,8 +19,8 @@ const MainApp = () => {
       <Route exact path="/">
         <h1>Home</h1>
       </Route>
-      <h1>FullName : {user?.full_name}</h1>
-      <h1>Username : {user?.username}</h1>
+      {/* <h1>FullName : {user?.full_name}</h1>
+      <h1>Username : {user?.username}</h1> */}
     </div>
   );
 };

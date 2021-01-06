@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import AuthContext from "../context/auth/authContext";
 import TimelineContext from "../context/timeline/timelineContext";
-import PostForm from "../components/PostForm";
+import ProfileInfo from "../components/ProfileInfo";
 import VisualTimeline from "./VisualTimeline";
 import SectionLine from "./SectionLine";
 
@@ -39,7 +39,7 @@ export default function Timeline() {
   if (!loading) {
     return (
       <div className="wrapper">
-        <PostForm />
+        <ProfileInfo />
         <VisualTimeline sections={Object.keys(posts).reverse()} />
         <SectionLine sections={posts} />
       </div>

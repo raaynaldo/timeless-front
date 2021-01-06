@@ -61,9 +61,7 @@ export default function Post({ post }) {
         <Card className={cx(cardStyles.root, shadowStyles.root)}>
           <CardMedia
             classes={mediaStyles}
-            image={
-              "https://images.unsplash.com/photo-1517147177326-b37599372b73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2229&q=80"
-            }
+            image={post.image}
           />
           <Avatar
             className={cardStyles.avatar}

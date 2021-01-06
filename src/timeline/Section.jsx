@@ -15,7 +15,7 @@ export default function Section(props) {
   return (
     <section
       className={`section section${props.year}`}
-      style={{ backgroundColor: color[bgColor] }}
+      style={{ backgroundImage: `linear-gradient(${color[bgColor]}, ${color[bgColor+1]}` }}
       id={`section${props.year}`}
     >
       <div>
