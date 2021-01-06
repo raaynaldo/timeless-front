@@ -11,6 +11,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 import { useFadedShadowStyles } from "@mui-treasury/styles/shadow/faded";
 import { useGutterBorderedGridStyles } from "@mui-treasury/styles/grid/gutterBordered";
+import Dialog from "@material-ui/core/Dialog";
 
 const useStyles = makeStyles(({ palette }) => ({
   card: {
@@ -79,6 +80,9 @@ export default function ProfileInfo(props) {
           </Box>
           <Box p={2} flex={"auto"} className={borderedGridStyles.item}>
             <Button className={styles.statLabel}>Following</Button>
+            {/* <Dialog open={followingOpen}>
+
+            </Dialog> */}
             <p className={styles.statValue}>{props.user_data.followee_count}</p>
           </Box>
         </Box>

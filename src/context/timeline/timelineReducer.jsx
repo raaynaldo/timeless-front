@@ -55,6 +55,10 @@ export default (state, action) => {
       return {
         ...state,
         is_following: action.payload,
+        user_data: {
+          ...state.user_data,
+          followers_count: action.payload ? state.user_data.followers_count + 1 : state.user_data.followers_count - 1
+        }
       };
     case SET_LOADING:
       return {
