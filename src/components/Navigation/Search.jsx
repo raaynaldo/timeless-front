@@ -15,6 +15,7 @@ import Slide from "@material-ui/core/Slide";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from '@material-ui/core/InputBase';
 import axios from 'axios';
+import { avoidUnnecessarySearch} from '../../utils/SearchUtil'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -80,8 +81,10 @@ export default function Search() {
 
   const search = async val => {
       setLoading(true);
-      const res = await axios.get(`/users?username=${val}`);
-      const users = res.data;
+      const res = await avoidUnnecessarySearch(`/users?username=${val}`);
+      const users = res;
+      console.log(users)
+      setLoading(false);
       setResults(users);
   }
 
@@ -145,15 +148,15 @@ export default function Search() {
           </Toolbar>
         </AppBar>
         <List>
-            {results.map(user => {
+            {results ? results.map((user, index) => {
                 return  (
                 <div>
                 <ListItem button>
-                    <ListItemText primary={user.full_name}secondary={user.username} />
+                    <ListItemText key={index} primary={user.full_name}secondary={user.username} />
                 </ListItem>
                 <Divider />
                 </div>
-                )})}
+                )}) : null}
         </List>
       </Dialog>
     </div>
