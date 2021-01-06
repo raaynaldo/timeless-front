@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PostForm from "./PostForm";
 import FollowButton from "./FollowButton";
 import cx from "clsx";
@@ -12,6 +12,16 @@ import Divider from "@material-ui/core/Divider";
 import { useFadedShadowStyles } from "@mui-treasury/styles/shadow/faded";
 import { useGutterBorderedGridStyles } from "@mui-treasury/styles/grid/gutterBordered";
 import Dialog from "@material-ui/core/Dialog";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItem from "@material-ui/core/ListItem";
+import List from "@material-ui/core/List";
+import Slide from "@material-ui/core/Slide";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import CloseIcon from "@material-ui/icons/Close";
+import Followers from './Followers'
 
 const useStyles = makeStyles(({ palette }) => ({
   card: {
@@ -51,7 +61,21 @@ const useStyles = makeStyles(({ palette }) => ({
     marginBottom: 4,
     letterSpacing: "1px",
   },
+  root: {
+    width: "100%",
+    maxWidth: 360,
+  },
+  appBar: {
+    position: "relative",
+  },
+  dialog: {
+    // width: "20vw"
+  }
 }));
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function ProfileInfo(props) {
   const styles = useStyles();
@@ -60,6 +84,34 @@ export default function ProfileInfo(props) {
     borderColor: "rgba(0, 0, 0, 0.08)",
     height: "50%",
   });
+
+  const [followingOpen, setFollowingOpen] = useState(false);
+  const [followersOpen, setFollowersOpen] = useState(false);
+  const [followers, setFollowers] = useState([]);
+  const [following, useFollowing] = useState([]);
+
+  const openFollowing = () => {
+    setFollowingOpen(true);
+  };
+
+  const openFollowers = () => {
+    setFollowersOpen(true);
+  };
+
+  const closeFollowing = () => {
+    setFollowingOpen(false);
+  };
+
+  const closeFollowers = () => {
+    setFollowersOpen(false);
+  };
+
+  const getFollowers = () => {
+  }
+
+  const getFollowing = () => {
+    closeFollowing()
+  }
 
   return (
     <div>
@@ -73,16 +125,19 @@ export default function ProfileInfo(props) {
         <Divider light />
         <Box display={"flex"}>
           <Box p={2} flex={"auto"} className={borderedGridStyles.item}>
-            <Button className={styles.statLabel}>Followers</Button>
+            <Button onClick={openFollowers} className={styles.statLabel}>
+              Followers
+            </Button>
+            <Followers title={"Followers"} close={closeFollowers} openStatus={followersOpen} users={followers}/>
             <p className={styles.statValue}>
               {props.user_data.followers_count}
             </p>
           </Box>
           <Box p={2} flex={"auto"} className={borderedGridStyles.item}>
-            <Button className={styles.statLabel}>Following</Button>
-            {/* <Dialog open={followingOpen}>
-
-            </Dialog> */}
+            <Button onClick={openFollowing} className={styles.statLabel}>
+              Following
+            </Button>
+            <Followers title={"Following"} close={closeFollowing} openStatus={followingOpen} users={following}/>
             <p className={styles.statValue}>{props.user_data.followee_count}</p>
           </Box>
         </Box>
