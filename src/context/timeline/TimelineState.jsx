@@ -7,6 +7,7 @@ import {
   ADD_POST_ERROR,
   GET_CURRENT_USER_PROFILE,
   GET_OTHER_USER_PROFILE,
+  FOLLOW_UNFOLLOW,
   PROFILE_NOT_FOUND,
   SET_LOADING,
   CLEAR_STATE,
@@ -73,6 +74,21 @@ const TimelineState = (props) => {
       dispatch({ type: ADD_POST_ERROR, payload: error.response.data.errors });
     }
   };
+
+  const followUnfollow = async (formData) => {
+    const config = {
+      "Content-Type": "application/json",
+    };
+    try {
+      const res = await axios.post("/follow_unfollow", formData, config);
+      dispatch({
+        type: FOLLOW_UNFOLLOW,
+        payload: res.data.is_following,
+      });
+    } catch (error) {
+      // dispatch({ type: ADD_POST_ERROR, payload: error.response.data.errors });
+    }
+  }
 
   const setLoading = () => dispatch({ type: SET_LOADING });
 

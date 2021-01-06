@@ -3,6 +3,7 @@ import {
   ADD_POST_ERROR,
   GET_CURRENT_USER_PROFILE,
   GET_OTHER_USER_PROFILE,
+  FOLLOW_UNFOLLOW,
   PROFILE_NOT_FOUND,
   SET_LOADING,
   CLEAR_STATE,
@@ -49,6 +50,11 @@ export default (state, action) => {
         ...state,
         loading: false,
         errors: action.payload,
+      };
+    case FOLLOW_UNFOLLOW:
+      return {
+        ...state,
+        is_following: action.payload,
       };
     case SET_LOADING:
       return {
