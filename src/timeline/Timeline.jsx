@@ -49,13 +49,13 @@ export default function Timeline() {
         getOtherUserProfile(params.username);
       }
     }
-  }, [user]);
+  }, [user, params]);
 
   console.log({ error }, { loading }, { posts });
   if (!loading && !error) {
     return (
       <div className="wrapper">
-        <ProfileInfo />
+        <ProfileInfo user_data={user_data} is_following={is_following} />
         <VisualTimeline sections={Object.keys(posts).reverse()} />
         <SectionLine sections={posts} />
       </div>

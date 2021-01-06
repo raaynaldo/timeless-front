@@ -51,7 +51,7 @@ const TimelineState = (props) => {
         payload: res.data,
       });
     } catch (error) {
-      console.log(error.response.data.message);
+      // console.log(error.response.data.message);
       dispatch({
         type: PROFILE_NOT_FOUND,
         payload: error.response.data.message,
