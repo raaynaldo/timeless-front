@@ -2,9 +2,13 @@ import React from 'react'
 import './output.css'
 
 export default function NavSection(props) {
+
+    // href={`#section${props.year}`
+    // onClick={() => document.getElementById("section" + props.year).scrollIntoView()}
+
     return (
         <li role="presentation" >
-        <a className="anchor" href={`#section${props.year}`}>
+        <a className="anchor" onClick={() => document.getElementById("section" + props.year).scrollIntoView()}>
           <span className="nav__counter">{props.year}</span>
           <h3 className="nav__title">Intro</h3>
           <p className="nav__body">

@@ -1,5 +1,6 @@
 import React from "react";
 import PostForm from "./PostForm";
+import FollowButton from "./FollowButton";
 import cx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -81,7 +82,7 @@ export default function ProfileInfo(props) {
             <p className={styles.statValue}>{props.user_data.followee_count}</p>
           </Box>
         </Box>
-        <PostForm />
+        {(props.is_user ? <PostForm /> : <FollowButton following={props.is_following}/>)}
       </Card>
       );
     </div>

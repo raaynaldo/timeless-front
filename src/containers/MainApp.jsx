@@ -15,7 +15,7 @@ const MainApp = () => {
     <TimelineState>
       <div style={{ marginTop: "64px" }}>
         <Toolbar user={user ? user : {}} />
-        <Route exact path={`${path}profile/:username`}>
+        <Route path={`${path}profile/:username`}>
           <Timeline />
         </Route>
         <Route exact path={`${path}profile`}>

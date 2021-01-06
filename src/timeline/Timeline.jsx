@@ -55,7 +55,7 @@ export default function Timeline() {
   if (!loading && !error) {
     return (
       <div className="wrapper">
-        <ProfileInfo user_data={user_data} is_following={is_following} />
+        <ProfileInfo user_data={user_data} is_user={user.id == user_data.id} is_following={is_following} />
         <VisualTimeline sections={Object.keys(posts).reverse()} />
         <SectionLine sections={posts} />
       </div>
