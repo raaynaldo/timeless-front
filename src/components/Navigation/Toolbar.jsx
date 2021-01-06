@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
-import Search from './Search'
-
+import Search from "./Search";
 
 import {
   AppBar,
@@ -10,12 +9,13 @@ import {
   Button,
   IconButton,
   InputBase,
+  Menu,
+  MenuItem,
   Toolbar,
   Typography,
   fade,
   makeStyles,
 } from "@material-ui/core";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,6 +73,38 @@ const TimlessAppBar = (props) => {
     logout();
   };
 
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [menuToogle, setMenuToogle] = useState(false);
+
+  const handleProfileMenuOpen = (event) => {
+    setMenuToogle(true);
+    setAnchorEl(event.currentTarget);
+    console.log(event);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    setMenuToogle(false);
+  };
+
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      // id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      open={menuToogle}
+      onClose={handleMenuClose}
+    >
+      <NavLink to="/profile">
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      </NavLink>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={onClick}>Logout</MenuItem>
+    </Menu>
+  );
+
   const classes = useStyles();
   return (
     <div>
@@ -82,18 +114,17 @@ const TimlessAppBar = (props) => {
           <NavLink to="/">
             <Typography variant="h6">Timeless</Typography>
           </NavLink>
-          <Button color="inherit" onClick={onClick}>
-            Logout
-          </Button>
           <NavLink to="/profile">
             <Avatar
               alt={props.user.full_name}
               src="/static/images/avatar/1.jpg"
               className={classes.large}
+              onMouseEnter={(event) => handleProfileMenuOpen(event)}
             />
           </NavLink>
         </Toolbar>
       </AppBar>
+      {renderMenu}
     </div>
   );
 };
