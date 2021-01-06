@@ -30,20 +30,29 @@ export default function Timeline() {
   const { user } = authContext;
 
   const timelineContext = useContext(TimelineContext);
-  const { posts, loading, getUserPosts } = timelineContext;
+  const {
+    posts,
+    user_data,
+    is_following,
+    loading,
+    error,
+    getCurrentUserProfile,
+    getOtherUserProfile,
+  } = timelineContext;
 
   useEffect(() => {
     console.log({ params });
     if (user) {
       if (!params.username) {
-        getUserPosts(user.id);
+        getCurrentUserProfile();
       } else {
-        getUserPosts(10);
+        getOtherUserProfile(params.username);
       }
     }
   }, [user]);
 
-  if (!loading) {
+  console.log({ error }, { loading }, { posts });
+  if (!loading && !error) {
     return (
       <div className="wrapper">
         <PostForm />
@@ -51,6 +60,9 @@ export default function Timeline() {
         <SectionLine sections={posts} />
       </div>
     );
+  } else if (error) {
+    console.log(error);
+    return <h1>{error}</h1>;
   } else {
     return (
       <div className={classes.root}>

@@ -7,8 +7,10 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
-export const ADD_POST = "ADD_POST"
-export const ADD_POST_ERROR = "ADD_POST_ERROR"
-export const GET_USER_POSTS = "GET_USER_TIMELINE"
-export const TIMELINE_ERROR = "TIMELINE_ERROR"
-export const SET_LOADING = "SET_LOADING"
+export const ADD_POST = "ADD_POST";
+export const ADD_POST_ERROR = "ADD_POST_ERROR";
+export const GET_CURRENT_USER_PROFILE = "GET_CURRENT_USER_PROFILE";
+export const GET_OTHER_USER_PROFILE = "GET_OTHER_USER_PROFILE";
+export const PROFILE_NOT_FOUND = "PROFILE_NOT_FOUND";
+export const SET_LOADING = "SET_LOADING";
+export const CLEAR_STATE = "CLEAR_STATE";

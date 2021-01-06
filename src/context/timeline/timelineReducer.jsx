@@ -1,17 +1,35 @@
 import {
   ADD_POST,
   ADD_POST_ERROR,
-  GET_USER_POSTS,
-  TIMELINE_ERROR,
+  GET_CURRENT_USER_PROFILE,
+  GET_OTHER_USER_PROFILE,
+  PROFILE_NOT_FOUND,
   SET_LOADING,
+  CLEAR_STATE,
+  CLEAR_ERRORS,
 } from "../types";
 
 export default (state, action) => {
   switch (action.type) {
-    case GET_USER_POSTS:
+    case GET_CURRENT_USER_PROFILE:
       return {
         ...state,
-        posts: action.payload,
+        posts: action.payload.posts,
+        user_data: action.payload.user_data,
+        loading: false,
+      };
+    case GET_OTHER_USER_PROFILE:
+      return {
+        ...state,
+        posts: action.payload.posts,
+        user_data: action.payload.user_data,
+        is_following: action.payload.is_following,
+        loading: false,
+      };
+    case PROFILE_NOT_FOUND:
+      return {
+        ...state,
+        error: action.payload,
         loading: false,
       };
     case ADD_POST:
@@ -36,6 +54,19 @@ export default (state, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    case CLEAR_STATE:
+      return {
+        posts: [],
+        user_data: {},
+        is_following: null,
+        loading: true,
+        error: null,
       };
     default:
       return;
