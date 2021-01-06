@@ -20,9 +20,9 @@ const SignUp = (props) => {
   const { signup, validation, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
+    clearErrors();
     if (isAuthenticated) {
       props.history.push("/");
-      clearErrors();
     }
   }, [isAuthenticated, props.history]);
 

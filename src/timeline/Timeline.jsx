@@ -4,6 +4,7 @@ import TimelineContext from "../context/timeline/timelineContext";
 import PostForm from "../components/PostForm";
 import VisualTimeline from "./VisualTimeline";
 import SectionLine from "./SectionLine";
+import { useParams } from "react-router-dom";
 
 import "./output.css";
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 // let test = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 export default function Timeline() {
+  const params = useParams();
   const classes = useStyles();
 
   const authContext = useContext(AuthContext);
@@ -31,8 +33,13 @@ export default function Timeline() {
   const { posts, loading, getUserPosts } = timelineContext;
 
   useEffect(() => {
+    console.log({ params });
     if (user) {
-      getUserPosts(user.id);
+      if (!params.username) {
+        getUserPosts(user.id);
+      } else {
+        getUserPosts(10);
+      }
     }
   }, [user]);
 

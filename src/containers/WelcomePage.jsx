@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 const Auth = () => {
   const classes = useStyles();
   let { path } = useRouteMatch();
-  console.log(path)
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />

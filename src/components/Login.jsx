@@ -18,11 +18,11 @@ import TimelineIcon from "@material-ui/icons/Timeline";
 const Login = (props) => {
   const authContext = useContext(AuthContext);
   const { login, validation, clearErrors, isAuthenticated } = authContext;
-  
+
   useEffect(() => {
+    clearErrors();
     if (isAuthenticated) {
       props.history.push("/");
-      clearErrors();
     }
   }, [isAuthenticated, props.history]);
 
@@ -128,11 +128,10 @@ const Login = (props) => {
             </Link>
           </Grid> */}
           <Grid item>
-          <LinkRoute to="/auth/signup">
-
-            {/* <Link variant="body2"> */}
+            <LinkRoute to="/auth/signup">
+              {/* <Link variant="body2"> */}
               {"Don't have an account? Sign Up"}
-            {/* </Link> */}
+              {/* </Link> */}
             </LinkRoute>
           </Grid>
         </Grid>

@@ -51,8 +51,8 @@ const AuthState = (props) => {
 
     try {
       const res = await axios.post("/users", formData, config);
-
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
+      loadUser();
     } catch (error) {
       dispatch({ type: SIGNUP_FAIL, payload: error.response.data.errors });
     }
@@ -70,6 +70,7 @@ const AuthState = (props) => {
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
+      loadUser();
     } catch (error) {
       dispatch({
         type: LOGIN_FAIL,

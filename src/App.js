@@ -16,18 +16,16 @@ function App() {
   }, []);
 
   return (
-    <TimelineState>
-      <Router>
-        <Switch>
-          <Route path="/auth" component={WelcomePage} />
-          <PrivateRoute path="/" component={MainApp} />
-          {/* <WelcomePage>
+    <Router>
+      <Switch>
+        <Route path="/auth" component={WelcomePage} />
+        <PrivateRoute path="/" component={MainApp} />
+        {/* <WelcomePage>
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
         </WelcomePage> */}
-        </Switch>
-      </Router>
-    </TimelineState>
+      </Switch>
+    </Router>
   );
 }
 

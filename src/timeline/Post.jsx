@@ -6,14 +6,14 @@ import TimelineContent from "@material-ui/lab/TimelineContent";
 import TimelineDot from "@material-ui/lab/TimelineDot";
 import cx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
-import Box from "@material-ui/core/Box";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import IconButton from "@material-ui/core/IconButton";
-import FavoriteBorderRounded from "@material-ui/icons/FavoriteBorderRounded";
-import Share from "@material-ui/icons/Share";
+import {
+  Avatar,
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Chip,
+} from "@material-ui/core";
 import { useSoftRiseShadowStyles } from "@mui-treasury/styles/shadow/softRise";
 import { useSlopeCardMediaStyles } from "@mui-treasury/styles/cardMedia/slope";
 import { useN01TextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/n01";
@@ -61,9 +61,7 @@ export default function Post({ post }) {
         <Card className={cx(cardStyles.root, shadowStyles.root)}>
           <CardMedia
             classes={mediaStyles}
-            image={
-              "https://images.unsplash.com/photo-1517147177326-b37599372b73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2229&q=80"
-            }
+            image={post.image ? post.image : ""}
           />
           <Avatar
             className={cardStyles.avatar}
@@ -77,12 +75,9 @@ export default function Post({ post }) {
             />
           </CardContent>
           <Box px={2} pb={2} mt={-1}>
-            <IconButton>
-              <Share />
-            </IconButton>
-            <IconButton>
-              <FavoriteBorderRounded />
-            </IconButton>
+            {post.tags.map((tag, index) => (
+              <Chip key={index} label={"#" + tag.name} />
+            ))}
           </Box>
         </Card>
       </TimelineContent>

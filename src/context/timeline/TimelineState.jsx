@@ -20,6 +20,7 @@ const TimelineState = (props) => {
 
   const getUserPosts = async (user_id) => {
     try {
+      setLoading();
       const res = await axios.get(`/user_posts/${user_id}`);
       dispatch({
         type: GET_USER_POSTS,

@@ -33,11 +33,11 @@ axios.interceptors.response.use(
 );
 
 ReactDOM.render(
-  <React.StrictMode>
-    <AuthState>
-      <App />
-    </AuthState>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <AuthState>
+    <App />
+  </AuthState>,
+  // </React.StrictMode>,
   document.getElementById("root")
 );
 

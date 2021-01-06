@@ -10,14 +10,14 @@ import {
   DialogTitle,
   TextField,
 } from "@material-ui/core";
-// import DialogContentText from "@material-ui/core/DialogContentText";
-import axios from "axios";
 
 export default function PostForm() {
   const timelineContext = useContext(TimelineContext);
   const { addPost } = timelineContext;
 
   const [open, setOpen] = useState(false);
+
+  const [validation, setValidation] = useState({});
 
   const [formImage, setFormImage] = useState("");
 
@@ -28,24 +28,26 @@ export default function PostForm() {
   const [tagOpen, setTagOpen] = useState(false);
 
   const handleClickOpen = () => {
+    setValidation({});
     setOpen(true);
   };
 
   const handleClose = () => {
-    const postData = {
-      body: formBody,
-      image: formImage,
-      tags: tags,
-    };
-    addPost(postData);
-    // const config = {
-    //   "Content-Type": "application/json",
-    // };
-
-    // axios
-    //   .post(`/posts/`, postData, config)
-    //   .then((res) => console.log(res.json));
     setOpen(false);
+  };
+
+  const handleSubmit = () => {
+    if (!!formBody.trim()) {
+      const postData = {
+        body: formBody,
+        image: formImage,
+        tags: tags,
+      };
+      addPost(postData);
+      handleClose();
+    } else {
+      setValidation({ body: "can't be blank" });
+    }
   };
 
   return (
@@ -61,14 +63,7 @@ export default function PostForm() {
         <DialogTitle id="form-dialog-title">Remember this Moment!</DialogTitle>
         <DialogContent>
           <TextField
-            onChange={(e) => setFormImage(e.target.value)}
             autoFocus
-            margin="dense"
-            id="image"
-            label="Image Url"
-            fullWidth
-          />
-          <TextField
             multiline
             rows={2}
             rowsMax={4}
@@ -78,6 +73,16 @@ export default function PostForm() {
             id="name"
             label="Body"
             type="body"
+            fullWidth
+            required
+            error={!!validation.body}
+            helperText={!!validation.body ? validation.body : ""}
+          />
+          <TextField
+            onChange={(e) => setFormImage(e.target.value)}
+            margin="dense"
+            id="image"
+            label="Image Url"
             fullWidth
           />
           {tags.map((tag) => (
@@ -91,7 +96,7 @@ export default function PostForm() {
           <Button onClick={() => setTagOpen(true)} color="primary">
             Add a Tag
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleSubmit} color="primary">
             Post
           </Button>
         </DialogActions>
