@@ -15,6 +15,7 @@ import { blue } from "@material-ui/core/colors";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
+import { Link } from "react-router-dom";
 
 const emails = ["username@gmail.com", "user02@gmail.com"];
 const useStyles = makeStyles({
@@ -29,14 +30,16 @@ export default function Followers(props) {
 
   const generateUsers = () => {
     return props.users.map((user, index) => (
-      <ListItem button onClick={() => props.handleClick} key={index}>
-        <ListItemAvatar>
-          <Avatar className={classes.avatar}>
-            <PersonIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary={user} />
-      </ListItem>
+      <Link style={{ textDecoration: 'none' }} to={"/profile/" + user.username}>
+        <ListItem button onClick={props.close} key={index}>
+          <ListItemAvatar>
+            <Avatar className={classes.avatar}>
+              <PersonIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary={user.username} />
+        </ListItem>
+      </Link>
     ));
   };
 
@@ -47,7 +50,7 @@ export default function Followers(props) {
       open={props.openStatus}
       style={{ maxHeight: "75%", overflow: "auto" }}
     >
-      <List style={{ overflow: "auto", minWidth:"75%" }}>
+      <List style={{ overflow: "auto", minWidth: "75%" }}>
         <ListSubheader color={"primary"} style={{ background: "white" }}>
           {" "}
           {`${props.title}  `}

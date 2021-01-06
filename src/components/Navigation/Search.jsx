@@ -151,7 +151,7 @@ export default function Search() {
             ? results.map((user, index) => {
                 return (
                   <div onClick={handleClose}>
-                    <Link to={"/profile/" + user.username}>
+                    <Link color={"primary"} style={{ textDecoration: 'none' }} to={"/profile/" + user.username}>
                       <ListItem button>
                         <ListItemText
                           key={index}

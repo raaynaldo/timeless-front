@@ -22,6 +22,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Followers from './Followers'
+import axios from "axios";
 
 const useStyles = makeStyles(({ palette }) => ({
   card: {
@@ -88,7 +89,7 @@ export default function ProfileInfo(props) {
   const [followingOpen, setFollowingOpen] = useState(false);
   const [followersOpen, setFollowersOpen] = useState(false);
   const [followers, setFollowers] = useState([]);
-  const [following, useFollowing] = useState([]);
+  const [following, setFollowing] = useState([]);
 
   const openFollowing = () => {
     setFollowingOpen(true);
@@ -106,11 +107,16 @@ export default function ProfileInfo(props) {
     setFollowersOpen(false);
   };
 
-  const getFollowers = () => {
+  const getFollowers = async () => {
+  const res = await axios.get("/followers/" + props.user_data.id);
+  setFollowers(res.data)
+  openFollowers()
   }
 
-  const getFollowing = () => {
-    closeFollowing()
+  const getFollowing = async() => {
+    const res = await axios.get("/following/" + props.user_data.id);
+    setFollowing(res.data)
+    openFollowing()
   }
 
   return (
@@ -125,7 +131,7 @@ export default function ProfileInfo(props) {
         <Divider light />
         <Box display={"flex"}>
           <Box p={2} flex={"auto"} className={borderedGridStyles.item}>
-            <Button onClick={openFollowers} className={styles.statLabel}>
+            <Button onClick={getFollowers} className={styles.statLabel}>
               Followers
             </Button>
             <Followers title={"Followers"} close={closeFollowers} openStatus={followersOpen} users={followers}/>
@@ -134,7 +140,7 @@ export default function ProfileInfo(props) {
             </p>
           </Box>
           <Box p={2} flex={"auto"} className={borderedGridStyles.item}>
-            <Button onClick={openFollowing} className={styles.statLabel}>
+            <Button onClick={getFollowing} className={styles.statLabel}>
               Following
             </Button>
             <Followers title={"Following"} close={closeFollowing} openStatus={followingOpen} users={following}/>
