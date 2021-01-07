@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Update() {
+export default function Update(props) {
   const classes = useStyles();
 
   return (
@@ -26,7 +26,7 @@ export default function Update() {
             <PersonIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary="Inbox" />
+        <ListItemText primary={`${props.post}`} />
       </ListItem>
       <Divider />
     </div>

@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect, useContext } from "react";
+import AuthContext from "../context/auth/authContext";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import InboxIcon from "@material-ui/icons/Inbox";
@@ -16,20 +17,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UpdateFeed() {
   const classes = useStyles();
+  const authContext = useContext(AuthContext);
+  const { user } = authContext;
 
   const [posts, setPosts] = useState([]);
 
   useEffect(async () => {
-    const res = await axios.get("/followee_posts");
-    const data = res.data;
-    setPosts(data);
-  }, [])
+    if (user) {
+      const res = await axios.get("/followee_posts");
+      const data = res.data.posts;
+      setPosts(data);
+    }
+  }, [user]);
 
   return (
     <div>
       <List component="nav" aria-label="main mailbox folders">
         {posts.map((post, index) => {
-            <Update post={post} key={index}/>
+          return <Update post={post} key={index} />;
         })}
       </List>
     </div>
