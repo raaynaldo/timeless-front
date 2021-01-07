@@ -4,14 +4,18 @@ import Post from "./Post";
 
 export default function Section(props) {
   const color = [
-    "#F64747",
-    "#22A7F0",
-    "#F9690E",
-    "#9B59B6",
-    "#03C9A9",
-    "#ffcc00",
-  ];
-  const bgColor = props.index % 6;
+    "#f72585ff",
+    "#b5179eff",
+    "#7209b7ff",
+    "##560badff",
+    "480ca8ff",
+    "#3a0ca3ff",
+    "#3f37c9ff",
+    "#4361eeff",
+    "#4895efff",
+    "#4cc9f0ff"
+  ].reverse();
+  const bgColor = props.index % color.length;
   return (
     <section
       className={`section section${props.year}`}

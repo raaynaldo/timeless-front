@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import TimelineItem from "@material-ui/lab/TimelineItem";
 import TimelineSeparator from "@material-ui/lab/TimelineSeparator";
 import TimelineConnector from "@material-ui/lab/TimelineConnector";
@@ -18,6 +18,7 @@ import { useSoftRiseShadowStyles } from "@mui-treasury/styles/shadow/softRise";
 import { useSlopeCardMediaStyles } from "@mui-treasury/styles/cardMedia/slope";
 import { useN01TextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/n01";
 import TextInfoContent from "@mui-treasury/components/content/textInfo";
+import Dialog from "@material-ui/core/Dialog";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -44,6 +45,10 @@ export default function Post({ post }) {
   const mediaStyles = useSlopeCardMediaStyles();
   const shadowStyles = useSoftRiseShadowStyles();
   const textCardContentStyles = useN01TextInfoContentStyles();
+  const [photoShowing, setPhotoShowing] = useState(false);
+  const seePhoto = () => {
+    setPhotoShowing(true);
+  }
 
   const dateOption = {
     month: "long",
@@ -60,9 +65,13 @@ export default function Post({ post }) {
       <TimelineContent>
         <Card className={cx(cardStyles.root, shadowStyles.root)}>
           <CardMedia
+            onClick={seePhoto}
             classes={mediaStyles}
             image={post.image}
           />
+          <Dialog open={photoShowing} onClose={() => setPhotoShowing(false)}>
+            <img style ={{maxHeight: "50vw", maxWidth: "50vw"}}src={post.image}/>
+          </Dialog>
           <Avatar
             className={cardStyles.avatar}
             src={"https://i.pravatar.cc/300"}

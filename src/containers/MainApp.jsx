@@ -4,6 +4,7 @@ import TimelineState from "../context/timeline/TimelineState";
 import Toolbar from "../components/Navigation/Toolbar";
 import Timeline from "../timeline/Timeline";
 import { Route, useRouteMatch } from "react-router-dom";
+import UpdateFeed from './UpdateFeed'
 
 
 const MainApp = () => {
@@ -22,7 +23,7 @@ const MainApp = () => {
           <Timeline />
         </Route>
         <Route exact path="/">
-          <h1>Home</h1>
+          <UpdateFeed />
         </Route>
         {/* <h1>FullName : {user?.full_name}</h1>
         <h1>Username : {user?.username}</h1> */}
