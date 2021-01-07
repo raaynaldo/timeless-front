@@ -20,7 +20,7 @@ export default function Section(props) {
     >
       <div>
         {props.timeline.map((t, index) => {
-          return <Post key={index} post={t} />;
+          return <Post key={index} post={t} user={props.user} />;
         })}
       </div>
     </section>

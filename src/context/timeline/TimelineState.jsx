@@ -77,11 +77,11 @@ const TimelineState = (props) => {
   };
 
   const followUnfollow = async (formData) => {
-    const config = {
-      "Content-Type": "application/json",
-    };
+    // const config = {
+    //   "Content-Type": "application/json",
+    // };
     try {
-      const res = await axios.post("/follow_unfollow", formData, config);
+      const res = await axios.post("/follow_unfollow", formData);
       dispatch({
         type: FOLLOW_UNFOLLOW,
         payload: res.data.is_following,

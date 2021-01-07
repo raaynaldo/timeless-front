@@ -39,7 +39,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Post({ post }) {
+export default function Post({ post, user }) {
   const cardStyles = useStyles();
   const mediaStyles = useSlopeCardMediaStyles();
   const shadowStyles = useSoftRiseShadowStyles();
@@ -59,13 +59,12 @@ export default function Post({ post }) {
       </TimelineSeparator>
       <TimelineContent>
         <Card className={cx(cardStyles.root, shadowStyles.root)}>
-          <CardMedia
-            classes={mediaStyles}
-            image={post.image}
-          />
+          <CardMedia classes={mediaStyles} image={post.image} />
           <Avatar
             className={cardStyles.avatar}
-            src={"https://i.pravatar.cc/300"}
+            src={user.image ? user.image : "/"}
+            alt={user.full_name}
+            // src={"https://i.pravatar.cc/300"}
           />
           <CardContent className={cardStyles.content}>
             <TextInfoContent

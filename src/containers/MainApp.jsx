@@ -4,6 +4,7 @@ import TimelineState from "../context/timeline/TimelineState";
 import Toolbar from "../components/Navigation/Toolbar";
 import Timeline from "../timeline/Timeline";
 import { Route, useRouteMatch } from "react-router-dom";
+import MyAccount from "../components/MyAccount";
 
 
 const MainApp = () => {
@@ -20,6 +21,9 @@ const MainApp = () => {
         </Route>
         <Route exact path={`${path}profile`}>
           <Timeline />
+        </Route>
+        <Route exact path="/account">
+          <MyAccount/>
         </Route>
         <Route exact path="/">
           <h1>Home</h1>

@@ -100,7 +100,9 @@ const TimlessAppBar = (props) => {
       <NavLink to="/profile">
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       </NavLink>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <NavLink to="/account">
+        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      </NavLink>
       <MenuItem onClick={onClick}>Logout</MenuItem>
     </Menu>
   );
@@ -117,7 +119,7 @@ const TimlessAppBar = (props) => {
           <NavLink to="/profile">
             <Avatar
               alt={props.user.full_name}
-              src="/static/images/avatar/1.jpg"
+              src={props.user.image ? props.user.image : "/"}
               className={classes.large}
               onMouseEnter={(event) => handleProfileMenuOpen(event)}
             />

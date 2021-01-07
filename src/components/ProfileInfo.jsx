@@ -66,7 +66,12 @@ export default function ProfileInfo(props) {
       <div></div>
       <Card className={cx(styles.card, shadowStyles.root)}>
         <CardContent>
-          <Avatar className={styles.avatar} src={"https://i.pravatar.cc/300"} alt={props.user_data.fullname} />
+          {/* <Avatar className={styles.avatar} src={"https://i.pravatar.cc/300"} alt={props.user_data.fullname} /> */}
+          <Avatar
+            className={styles.avatar}
+            src={props.user_data.image ? props.user_data.image : "/"}
+            alt={props.user_data.full_name}
+          />
           <h3 className={styles.heading}>{props.user_data.full_name}</h3>
           <span className={styles.subheader}>{props.user_data.username}</span>
         </CardContent>
