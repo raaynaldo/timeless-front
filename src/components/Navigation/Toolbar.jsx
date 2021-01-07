@@ -113,7 +113,7 @@ const TimlessAppBar = (props) => {
       <AppBar position="fixed" className={classes.root}>
         <Toolbar className={classes.toolbar}>
           <Search />
-          <NavLink to="/">
+          <NavLink style={{textDecoration: "none", color: "white"}} to="/">
             <Typography variant="h6">Timeless</Typography>
           </NavLink>
           <NavLink to="/profile">
