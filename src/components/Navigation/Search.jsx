@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginLeft: theme.spacing(2),
     flex: 1,
+    color: "white",
   },
   search: {
     position: "relative",
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    color: "white",
   },
   inputRoot: {
     color: "inherit",
@@ -53,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
+    color: "white",
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -105,9 +108,10 @@ export default function Search() {
     <div>
       <IconButton
         edge="start"
-        color="inherit"
+        color="white"
         aria-label="close"
         onClick={handleClickOpen}
+        style={{color: "white"}}
       >
         <SearchIcon />
       </IconButton>
@@ -141,6 +145,7 @@ export default function Search() {
               color="inherit"
               onClick={handleClose}
               aria-label="close"
+              style={{color: "white"}}
             >
               <CloseIcon />
             </IconButton>
