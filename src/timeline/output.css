@@ -50,21 +50,26 @@ section:nth-child(7) {
   display: none;
 }
 
-.nav__wrapper {
-  position: fixed;
-
-  height: 100vh;
-  padding: 30px;
-  width: 16vw;
-  display: flex;
-  flex-flow: column nowrap;
-  overflow: scroll;
+.timeline-wrapper{
+  position: absolute;
+  top: 30%;
+  width: 100%;
 }
+
+.nav__wrapper {
+  height: 100vh;
+  width: 16vw;
+  display: inline flex;
+  flex-flow: column nowrap;
+  margin: 0;
+  position: fixed; 
+  z-index: 1;
+}
+
 .nav {
+  overflow: scroll;
   margin: 0 0 100px 30px;
   list-style-type: none;
-  /* position: sticky;
-  top: 0%; */
 }
 .nav__counter {
   font-size: 24px;
