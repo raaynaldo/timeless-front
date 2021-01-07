@@ -6,6 +6,7 @@ import InboxIcon from "@material-ui/icons/Inbox";
 import DraftsIcon from "@material-ui/icons/Drafts";
 import Update from "../components/Update";
 import axios from "axios";
+import NoFollowerAlert from '../components/NoFollowerAlert'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,9 +34,13 @@ export default function UpdateFeed() {
   return (
     <div>
       <List component="nav" aria-label="main mailbox folders">
-        {posts.map((post, index) => {
-          return <Update post={post} key={index} />;
-        })}
+        {posts.length == 0 ? (
+          <NoFollowerAlert />
+        ) : (
+          posts.map((post, index) => {
+            return <Update post={post} key={index} />;
+          })
+        )}
       </List>
     </div>
   );
