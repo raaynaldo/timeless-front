@@ -63,9 +63,11 @@ const useStyles = makeStyles((theme) => ({
     //   },
     // },
   },
+  link: { textDecoration: "none" },
 }));
 
 const TimlessAppBar = (props) => {
+  const classes = useStyles();
   const authContext = useContext(AuthContext);
   const { logout } = authContext;
 
@@ -97,26 +99,33 @@ const TimlessAppBar = (props) => {
       open={menuToogle}
       onClose={handleMenuClose}
     >
-      <NavLink to="/profile">
+      <NavLink
+        className={classes.link}
+        style={{ color: "black" }}
+        to="/profile"
+      >
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       </NavLink>
-      <NavLink to="/account">
+      <NavLink
+        className={classes.link}
+        style={{ color: "black" }}
+        to="/account"
+      >
         <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       </NavLink>
       <MenuItem onClick={onClick}>Logout</MenuItem>
     </Menu>
   );
 
-  const classes = useStyles();
   return (
     <div>
       <AppBar position="fixed" className={classes.root}>
         <Toolbar className={classes.toolbar}>
           <Search />
-          <NavLink style={{textDecoration: "none", color: "white"}} to="/">
+          <NavLink className={classes.link} style={{ color: "white" }} to="/">
             <Typography variant="h6">Timeless</Typography>
           </NavLink>
-          <NavLink to="/profile">
+          <NavLink to="/profile" className={classes.link}>
             <Avatar
               alt={props.user.full_name}
               src={props.user.image ? props.user.image : "/"}
