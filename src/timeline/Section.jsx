@@ -23,15 +23,29 @@ export default function Section(props) {
   // ];
 
   const color = [
-    "#ef476fff",
-    "#ffd166ff",
-    "#06d6a0ff",
-    "#118ab2ff",
-    "#073b4cff",
-  ];
+    "#f72585ff",
+    "#b5179eff",
+    "#7209b7ff",
+    "##560badff",
+    "480ca8ff",
+    "#3a0ca3ff",
+    "#3f37c9ff",
+    "#4361eeff",
+    "#4895efff",
+    "#4cc9f0ff",
+  ].reverse()
+
+  // const color = [
+  //   "#ef476fff",
+  //   "#ffd166ff",
+  //   "#06d6a0ff",
+  //   "#118ab2ff",
+  //   "#073b4cff",
+  // ];
 
   const bgColor = props.index % color.length;
   const bgColor2 = (props.index + 1) % color.length;
+
   return (
     <section
       className={`section section${props.year}`}

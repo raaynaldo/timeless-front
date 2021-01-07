@@ -17,10 +17,10 @@ function App() {
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: purple[500],
+        main: "#4cc9f0ff",
       },
       secondary: {
-        main: green[500],
+        main: "#f72585ff",
       },
     },
   });
