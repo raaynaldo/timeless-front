@@ -30,11 +30,20 @@ export default function Followers(props) {
 
   const generateUsers = () => {
     return props.users.map((user, index) => (
-      <Link style={{ textDecoration: 'none' }} to={"/profile/" + user.username}>
+      <Link
+        key={index}
+        style={{ textDecoration: "none", color: "black" }}
+        to={"/profile/" + user.username}
+      >
         <ListItem button onClick={props.close} key={index}>
           <ListItemAvatar>
-            <Avatar className={classes.avatar}>
-              <PersonIcon />
+            <Avatar
+              className={classes.avatar}
+              alt={user.full_name}
+              src={user.image ? user.image : "/"}
+              className={classes.large}
+            >
+              {/* <PersonIcon /> */}
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={user.username} />
