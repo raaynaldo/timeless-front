@@ -1,21 +1,19 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    textAlign: "center",
-    "& > * + *": {
-      marginLeft: theme.spacing(2),
-    },
-  },
-}));
+const loaderStyle = {
+  top: "0",
+  width: "100%",
+  position: "absolute",
+  height: "100%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
 
 function Loading() {
-  const classes = useStyles;
   return (
-    <div className={classes.root}>
+    <div style={loaderStyle}>
       <CircularProgress size={100} />
     </div>
   );

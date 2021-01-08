@@ -50,10 +50,12 @@ export default function Timeline() {
         />
         <div className="split-side-bar">
           <VisualTimeline sections={Object.keys(posts).reverse()} />
-          <SectionLine
-            sections={posts}
-            user={{ full_name: user_data.full_name, image: user_data.image }}
-          />
+          <div className="content">
+            <SectionLine
+              sections={posts}
+              user={{ full_name: user_data.full_name, image: user_data.image }}
+            />
+          </div>
         </div>
       </div>
     );

@@ -57,25 +57,32 @@ section:nth-child(7) {
 }
 
 .split-side-bar{
-  /* display: flex; */
+  display: grid;
+}
+
+.content{
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .nav__wrapper {
+  position: sticky;
+  align-self: start;
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 999;
+  top: 70px;
+  
   height: 100vh;
   width: 16vw;
-  /* display: inline flex;
-  flex-flow: column nowrap; */
   margin: 0;
-  position: fixed;
-  /* background: black;  */
-  /* top: 64px; */
 }
 
 .nav {
   overflow: scroll;
   margin: 0 0 100px 30px;
   list-style-type: none;
-  height: 75%;
+  height: 100%;
 }
 .nav__counter {
   font-size: 24px;
