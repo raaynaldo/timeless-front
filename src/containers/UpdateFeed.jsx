@@ -8,7 +8,7 @@ import Update from "../components/Update";
 import axios from "axios";
 import NoFollowerAlert from "../components/NoFollowerAlert";
 import ActionCable from "actioncable";
-import Loading from '../components/Loading'
+import Loading from "../components/Loading";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,33 +20,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UpdateFeed(props) {
   let connection;
-
-  const createSocket = () => {
-    const cable = ActionCable.createConsumer(
-      "ws://localhost:3001/api/v1/" + "cable"
-    );
-    connection = cable.subscriptions.create(
-      { channel: "UpdatesChannel", user_id: user.id },
-      {
-        connected: () => console.log("connected"),
-        received: (data) => {
-          console.log("please tell me");
-          handleDataFromConnection(data);
-        },
-      }
-    );
-  };
   const classes = useStyles();
   const authContext = useContext(AuthContext);
   const { user } = authContext;
 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const handleDataFromConnection = (data) => {
-    console.log(data.post);
-    setPosts((prev) => [data.post, ...prev]);
-  };
 
   useEffect(async () => {
     if (user) {
@@ -57,7 +36,32 @@ export default function UpdateFeed(props) {
       setLoading(false);
     }
   }, [user]);
-  console.log({ posts });
+
+  useEffect(() => {
+    return () => {
+      connection.unsubscribe();
+    };
+  }, []);
+
+  const createSocket = () => {
+    const cable = ActionCable.createConsumer(
+      "ws://localhost:3001/api/v1/" + "cable"
+    );
+    connection = cable.subscriptions.create(
+      { channel: "UpdatesChannel", user_id: user.id },
+      {
+        connected: () => console.log("connected"),
+        received: (data) => {
+          handleDataFromConnection(data);
+        },
+      }
+    );
+  };
+
+  const handleDataFromConnection = (data) => {
+    setPosts((prev) => [data.post, ...prev]);
+  };
+
   return (
     <div>
       {loading ? (

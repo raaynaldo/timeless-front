@@ -55,23 +55,6 @@ const SignUp = (props) => {
     signup({ user });
   };
 
-  // signUp = () => {
-  //   const data = { user: this.state };
-
-  //   axios
-  //     .post("/users", data)
-  //     .then((response) => {
-  //       console.log(response);
-  //       const data = response.data;
-  //       localStorage.setItem("token", data.jwt);
-  //       this..history.replace("/");
-  //     })
-  //     .catch((error) => {
-  //       const data = error.response.data;
-  //       this.setState({ error: data.error });
-  //     });
-  // };
-
   const useStyles = makeStyles((theme) => ({
     paper: {
       margin: theme.spacing(1, 4),

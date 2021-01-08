@@ -9,8 +9,6 @@ import Loading from "../components/Loading";
 
 import "./output.css";
 
-// let test = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-
 export default function Timeline() {
   const params = useParams();
 
@@ -29,7 +27,6 @@ export default function Timeline() {
   } = timelineContext;
 
   useEffect(() => {
-    console.log({ params });
     if (user) {
       if (!params.username) {
         getCurrentUserProfile();
@@ -39,7 +36,6 @@ export default function Timeline() {
     }
   }, [user, params]);
 
-  console.log({ is_following });
   if (!loading && !error) {
     return (
       <div className="wrapper">
@@ -60,7 +56,6 @@ export default function Timeline() {
       </div>
     );
   } else if (error) {
-    console.log(error);
     return <h1>{error}</h1>;
   } else {
     return <Loading />;

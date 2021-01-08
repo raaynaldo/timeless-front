@@ -5,10 +5,7 @@ import MainApp from "./containers/MainApp";
 import PrivateRoute from "./PrivateRoute";
 import WelcomePage from "./containers/WelcomePage";
 import AuthContext from "./context/auth/authContext";
-import TimelineState from "./context/timeline/TimelineState";
 import {ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
 
 function App() {
   const authContext = useContext(AuthContext);

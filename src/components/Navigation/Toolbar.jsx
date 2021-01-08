@@ -81,7 +81,6 @@ const TimlessAppBar = (props) => {
   const handleProfileMenuOpen = (event) => {
     setMenuToogle(true);
     setAnchorEl(event.currentTarget);
-    console.log(event);
   };
 
   const handleMenuClose = () => {
