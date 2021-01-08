@@ -6,13 +6,15 @@ export default function AddTagSection(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.addToTags((prevTags) => {
+    if (tag != "") {
+      props.addToTags((prevTags) => {
         prevTags.push(tag);
         return prevTags;
-    });
-    setTag("");
-    props.setShowing(false);
-    // e.reset();
+      });
+      setTag("");
+      props.setShowing(false);
+      // e.reset();
+    }
   };
 
   return (
