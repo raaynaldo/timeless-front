@@ -13,7 +13,6 @@ import "./output.css";
 
 export default function Timeline() {
   const params = useParams();
-  
 
   const authContext = useContext(AuthContext);
   const { user } = authContext;
@@ -49,11 +48,13 @@ export default function Timeline() {
           is_user={user.id == user_data.id}
           is_following={is_following}
         />
-        <VisualTimeline sections={Object.keys(posts).reverse()} />
-        <SectionLine
-          sections={posts}
-          user={{ full_name: user_data.full_name, image: user_data.image }}
-        />
+        <div className="split-side-bar">
+          <VisualTimeline sections={Object.keys(posts).reverse()} />
+          <SectionLine
+            sections={posts}
+            user={{ full_name: user_data.full_name, image: user_data.image }}
+          />
+        </div>
       </div>
     );
   } else if (error) {

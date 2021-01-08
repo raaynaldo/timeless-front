@@ -16,5 +16,5 @@ export default function SectionLine(props) {
       ));
   }
 
-  return generateSections();
+  return <div style={{ flexGrow: 1 }}>{generateSections()}</div>;
 }

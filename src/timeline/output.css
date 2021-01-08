@@ -56,20 +56,26 @@ section:nth-child(7) {
   width: 100%;
 }
 
+.split-side-bar{
+  /* display: flex; */
+}
+
 .nav__wrapper {
   height: 100vh;
   width: 16vw;
-  display: inline flex;
-  flex-flow: column nowrap;
+  /* display: inline flex;
+  flex-flow: column nowrap; */
   margin: 0;
-  position: fixed; 
-  z-index: 1;
+  position: fixed;
+  /* background: black;  */
+  /* top: 64px; */
 }
 
 .nav {
   overflow: scroll;
   margin: 0 0 100px 30px;
   list-style-type: none;
+  height: 75%;
 }
 .nav__counter {
   font-size: 24px;
