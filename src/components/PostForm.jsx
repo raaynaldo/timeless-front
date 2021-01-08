@@ -9,7 +9,10 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
+  IconButton,
+  Typography,
 } from "@material-ui/core";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
 export default function PostForm() {
   const timelineContext = useContext(TimelineContext);
@@ -19,7 +22,7 @@ export default function PostForm() {
 
   const [validation, setValidation] = useState({});
 
-  const [formImage, setFormImage] = useState("");
+  const [formImage, setFormImage] = useState({});
 
   const [formBody, setFormBody] = useState("");
 
@@ -29,6 +32,9 @@ export default function PostForm() {
 
   const handleClickOpen = () => {
     setValidation({});
+    setFormImage({});
+    setFormBody("");
+    setTags([]);
     setOpen(true);
   };
 
@@ -36,14 +42,33 @@ export default function PostForm() {
     setOpen(false);
   };
 
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setFormImage({
+        ...formImage,
+        file: e.target.files[0],
+        url: e.target.files[0].name,
+      });
+    }
+  };
+
+  const urlChange = (e) => {
+    setFormImage({ ...formImage, file: null, url: e.target.value });
+    document.getElementById("icon-button-file").value = "";
+  };
+
   const handleSubmit = () => {
     if (!!formBody.trim()) {
-      const postData = {
-        body: formBody,
-        image: formImage,
-        tags: tags,
-      };
-      addPost(postData);
+      const formData = new FormData();
+      formData.append("body", formBody);
+      console.log(tags);
+      formData.append("tags", tags);
+      if (formImage.file) {
+        formData.append("file", formImage.file);
+      } else {
+        formData.append("url", formImage.url);
+      }
+      addPost(formData);
       handleClose();
     } else {
       setValidation({ body: "can't be blank" });
@@ -78,12 +103,31 @@ export default function PostForm() {
             error={!!validation.body}
             helperText={!!validation.body ? validation.body : ""}
           />
+          <input
+            accept="image/*"
+            style={{ display: "none" }}
+            id="icon-button-file"
+            type="file"
+            name="newPhoto"
+            onChange={handleImageChange}
+          />
+          <label htmlFor="icon-button-file">
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+            >
+              <Typography>Upload Image</Typography>
+              <PhotoCamera />
+            </IconButton>
+          </label>
           <TextField
-            onChange={(e) => setFormImage(e.target.value)}
+            onChange={urlChange}
             margin="dense"
             id="image"
             label="Image Url"
             fullWidth
+            value={formImage?.url}
           />
           {tags.map((tag) => (
             <Chip label={tag} />

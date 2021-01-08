@@ -130,7 +130,8 @@ export default function MyAccount() {
               </label>
               <TextField
                 value={image?.url}
-                style={{ width: "100%" }}
+                fullWidth
+                // style={{ width: "100%" }}
                 onChange={urlChange}
                 error={!!error}
                 helperText={!!error ? error : ""}
