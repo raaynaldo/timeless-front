@@ -27,7 +27,7 @@ const MainApp = () => {
           <MyAccount/>
         </Route>
         <Route exact path="/">
-          <UpdateFeed />
+          <UpdateFeed user={user}/>
         </Route>
         {/* <h1>FullName : {user?.full_name}</h1>
         <h1>Username : {user?.username}</h1> */}

@@ -34,7 +34,7 @@ export default function NoFollowerAlert() {
           Welcome to Timeless
         </Typography>    
         <Typography variant="body2" component="p">
-          Try following some of you friends to see their important memories
+          Try following some of your friends to see their important memories
           <br />
         </Typography>
       </CardContent>

@@ -45,6 +45,7 @@ export default function PostForm() {
       };
       addPost(postData);
       handleClose();
+      setTags([]);
     } else {
       setValidation({ body: "can't be blank" });
     }
