@@ -46,11 +46,11 @@ export default function Update(props) {
 
   return (
     <div>
-      <ListItem style={{ height: "10vh" }} button>
-        <Link
-          style={{ textDecoration: "none", color: "black" }}
-          to={"/profile/" + props.post.user.username}
-        >
+      <Link
+        style={{ textDecoration: "none", color: "black" }}
+        to={"/profile/" + props.post.user.username}
+      >
+        <ListItem style={{ height: "10vh" }} button>
           <ListItemAvatar>
             <Avatar
               className={classes.avatar}
@@ -60,12 +60,12 @@ export default function Update(props) {
               <PersonIcon />
             </Avatar>
           </ListItemAvatar>
-        </Link>
-        <ListItemText
-          primary={`${props.post.user.username} posted on ${date} at ${date2}`}
-        />
-        {makeChips()}
-      </ListItem>
+          <ListItemText
+            primary={`${props.post.user.username} posted on ${date} at ${date2}`}
+          />
+          {makeChips()}
+        </ListItem>
+      </Link>
       <Divider />
     </div>
   );

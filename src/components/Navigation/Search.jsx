@@ -1,5 +1,7 @@
 import React from "react";
 import { makeStyles, fade } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
+import PersonIcon from "@material-ui/icons/Person";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -16,6 +18,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { Link } from "react-router-dom";
 import { avoidUnnecessarySearch } from "../../utils/SearchUtil";
+import { blue } from "@material-ui/core/colors";
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -66,6 +70,11 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  avatar: {
+    backgroundColor: blue[100],
+    color: blue[600],
+    marginRight: "10px"
+  },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -111,7 +120,7 @@ export default function Search() {
         color="white"
         aria-label="close"
         onClick={handleClickOpen}
-        style={{color: "white"}}
+        style={{ color: "white" }}
       >
         <SearchIcon />
       </IconButton>
@@ -145,7 +154,7 @@ export default function Search() {
               color="inherit"
               onClick={handleClose}
               aria-label="close"
-              style={{color: "white"}}
+              style={{ color: "white" }}
             >
               <CloseIcon />
             </IconButton>
@@ -156,8 +165,19 @@ export default function Search() {
             ? results.map((user, index) => {
                 return (
                   <div onClick={handleClose}>
-                    <Link color={"primary"} style={{ textDecoration: 'none' }} to={"/profile/" + user.username}>
+                    <Link
+                      color={"primary"}
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={"/profile/" + user.username}
+                    >
                       <ListItem button>
+                        <Avatar
+                          className={classes.avatar}
+                          src={user.image ? user.image : "/"}
+                          alt={user.full_name}
+                        >
+                          <PersonIcon />
+                        </Avatar>
                         <ListItemText
                           key={index}
                           primary={user.full_name}
