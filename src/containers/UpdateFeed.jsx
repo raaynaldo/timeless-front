@@ -46,7 +46,7 @@ export default function UpdateFeed(props) {
   const createSocket = () => {
     const cable = ActionCable.createConsumer(
       // "ws://localhost:3001/api/v1/" + "cable"
-      "ws://timeless-api.herokuapp.com/api/v1/" + "cable"
+      "wss://timeless-api.herokuapp.com/api/v1/" + "cable"
     );
     connection = cable.subscriptions.create(
       { channel: "UpdatesChannel", user_id: user.id },
