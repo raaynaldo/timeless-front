@@ -23,6 +23,7 @@ function App() {
   });
 
   useEffect(() => {
+    console.log("app useEffect")
     loadUser();
   }, []);
 

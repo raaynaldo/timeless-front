@@ -95,7 +95,6 @@ export default function Search() {
     setLoading(true);
     const res = await avoidUnnecessarySearch(`/users?username=${val}`);
     const users = res;
-    console.log(users);
     setLoading(false);
     setResults(users);
   };

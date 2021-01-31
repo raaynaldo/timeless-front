@@ -61,7 +61,6 @@ export default function PostForm() {
     if (!!formBody.trim()) {
       const formData = new FormData();
       formData.append("body", formBody);
-      console.log(tags);
       formData.append("tags", tags);
       if (formImage.file) {
         formData.append("file", formImage.file);
