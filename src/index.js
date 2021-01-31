@@ -5,7 +5,8 @@ import App from "./App";
 import axios from "axios";
 import AuthState from "./context/auth/AuthState";
 
-axios.defaults.baseURL = "http://127.0.0.1:3001/api/v1";
+// axios.defaults.baseURL = "http://127.0.0.1:3001/api/v1";
+axios.defaults.baseURL = "https://herokuy-deploy-test.herokuapp.com/api/v1";
 
 // axios.interceptors.request.use(
 //   (request) => {
