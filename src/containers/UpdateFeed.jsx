@@ -44,9 +44,15 @@ export default function UpdateFeed(props) {
   }, []);
 
   const createSocket = () => {
+    // const cable = ActionCable.createConsumer(
+    //   // "ws://localhost:3001/api/v1/" + "cable"
+    //   "wss://timeless-api.herokuapp.com/api/v1/" + "cable"
+    // );
     const cable = ActionCable.createConsumer(
       // "ws://localhost:3001/api/v1/" + "cable"
-      "wss://timeless-api.herokuapp.com/api/v1/" + "cable"
+      (!process.env.NODE_ENV || process.env.NODE_ENV === "development"
+        ? `ws://localhost:3001/api/v1/`
+        : "wss://timeless-api.herokuapp.com/api/v1/") + "cable"
     );
     connection = cable.subscriptions.create(
       { channel: "UpdatesChannel", user_id: user.id },

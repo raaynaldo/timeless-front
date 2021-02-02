@@ -11,16 +11,16 @@ import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 import { useFadedShadowStyles } from "@mui-treasury/styles/shadow/faded";
 import { useGutterBorderedGridStyles } from "@mui-treasury/styles/grid/gutterBordered";
-import Dialog from "@material-ui/core/Dialog";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from "@material-ui/core/ListItem";
-import List from "@material-ui/core/List";
+// import Dialog from "@material-ui/core/Dialog";
+// import ListItemText from "@material-ui/core/ListItemText";
+// import ListItem from "@material-ui/core/ListItem";
+// import List from "@material-ui/core/List";
 import Slide from "@material-ui/core/Slide";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import CloseIcon from "@material-ui/icons/Close";
+// import AppBar from "@material-ui/core/AppBar";
+// import Toolbar from "@material-ui/core/Toolbar";
+// import IconButton from "@material-ui/core/IconButton";
+// import Typography from "@material-ui/core/Typography";
+// import CloseIcon from "@material-ui/icons/Close";
 import Followers from './Followers'
 import axios from "axios";
 

@@ -6,7 +6,14 @@ import axios from "axios";
 import AuthState from "./context/auth/AuthState";
 
 // axios.defaults.baseURL = "http://127.0.0.1:3001/api/v1";
-axios.defaults.baseURL = "https://timeless-api.herokuapp.com/api/v1";
+// axios.defaults.baseURL = "https://timeless-api.herokuapp.com/api/v1";
+if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+  // dev code
+  axios.defaults.baseURL = process.env.REACT_APP_API_SERVER_DEVELOPMENT;
+} else {
+  // production code
+  axios.defaults.baseURL = process.env.REACT_APP_API_SERVER_PRODUCTION;
+}
 
 // axios.interceptors.request.use(
 //   (request) => {
